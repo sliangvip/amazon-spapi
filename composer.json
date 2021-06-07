@@ -1,11 +1,11 @@
 {
-  "name": "double-break/spapi-php",
+  "name": "sliangvip/amazon-spapi",
   "description": "Amazon Selling Partner API Client",
   "type": "library",
   "authors": [
      {
-         "name": "Lyubo Slavilov",
-         "email": "lyubo.slavilov@gmail.com"
+         "name": "niubei",
+         "email": "niubei@niubeiapp.com"
      }
   ],
   "require": {
