@@ -43,9 +43,6 @@ class Feeder
             $file = file_get_contents($feedContentFilePath);
         }
 
-        // utf8 !
-        $file = utf8_encode($file);
-
         // encrypt string and get value as base64 encoded string
         $encryptedFile = ASECryptoStream::encrypt($file, $key, $initializationVector);
 
@@ -91,12 +88,8 @@ class Feeder
 
         $decryptedFile = ASECryptoStream::decrypt(file_get_contents($feedDownloadUrl), $key, $initializationVector);
         if(isset($payload['compressionAlgorithm']) && $payload['compressionAlgorithm']=='GZIP') {
-            $decryptedFile=gzdecode($decryptedFile);
+            $decryptedFile = gzdecode($decryptedFile);
         }
-        $decryptedFile = preg_replace('/\s+/S', " ", $decryptedFile);
-
-        $xml = simplexml_load_string($decryptedFile);
-        $json = json_encode($xml);
-        return json_decode($json, TRUE);
+        return $decryptedFile;
     }
 }
