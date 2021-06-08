@@ -21,7 +21,7 @@ class Feeder
      * @throws \Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function uploadFeedDocument($payload, $contentType, $feedContentFilePath)
+    public function uploadFeedDocument($payload, $contentType, $feedFile)
     {
         $encryptionDetails = $payload['encryptionDetails'];
         $feedUploadUrl = $payload['url'];
@@ -34,13 +34,15 @@ class Feeder
         $key = base64_decode($key, true);
 
         // get file to upload
-        $fileResourceType = gettype($feedContentFilePath);
+        $fileResourceType = gettype($feedFile);
 
         // resource or string ? make it to a string
         if ($fileResourceType == 'resource') {
-            $file = stream_get_contents($feedContentFilePath);
+            $file = stream_get_contents($feedFile);
+        } elseif (file_exists($feedFile)) {
+            $file = file_get_contents($feedFile);
         } else {
-            $file = file_get_contents($feedContentFilePath);
+            $file = $feedFile;
         }
 
         // encrypt string and get value as base64 encoded string
