@@ -9,13 +9,23 @@ class Client {
   protected $config;
   protected $signer;
   protected $lastHttpResponse = null;
+  protected $httpClient = null;
+
   public function __construct(array $credentials = [], array $config = [])
   {
     $this->credentials = $credentials;
     $this->config = $config;
     $this->signer = new Signer(); //Should be injected :(
+    $this->httpClient = $this->createHttpClient([
+      'base_uri' => 'https://' . $this->config['host']
+    ]);
   }
 
+  public function setCredentials($credentials)
+  {
+    $this->credentials = $credentials;
+    return $this;
+  }
 
   private function normalizeHeaders($headers)
   {
@@ -71,9 +81,7 @@ class Client {
     $requestOptions = $this->signer->sign($requestOptions, $signOptions);
 
     //Prep client and send the request
-    $client = $this->createHttpClient([
-      'base_uri' => 'https://' . $this->config['host']
-    ]);
+    $client = $this->getHttpClient();
 
     try {
       $this->lastHttpResponse = null;
