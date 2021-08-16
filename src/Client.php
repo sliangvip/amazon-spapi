@@ -9,6 +9,10 @@ class Client {
   protected $config;
   protected $signer;
   protected $lastHttpResponse = null;
+
+  /**
+   * @var \GuzzleHttp\Client
+   */
   protected $httpClient = null;
 
   public function __construct(array $credentials = [], array $config = [])

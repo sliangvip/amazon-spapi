@@ -13,6 +13,11 @@ class Credentials
     private $tokenStorage;
     private $signer;
 
+    /**
+     * @var \GuzzleHttp\Client
+     */
+    protected $httpClient = null;
+
     public function __construct(TokenStorageInterface $tokenStorage, Signer $signer, array $config = [])
     {
         $this->config = $config;
