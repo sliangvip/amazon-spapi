@@ -23,15 +23,8 @@ class Feeder
      */
     public function uploadFeedDocument($payload, $contentType, $feedFile)
     {
-        $encryptionDetails = $payload['encryptionDetails'];
+        $encryptionDetails = $payload['encryptionDetails'] ?? null;
         $feedUploadUrl = $payload['url'];
-
-        $key = $encryptionDetails['key'];
-        $initializationVector = $encryptionDetails['initializationVector'];
-
-        // base64 decode before using in encryption
-        $initializationVector = base64_decode($initializationVector, true);
-        $key = base64_decode($key, true);
 
         // get file to upload
         $fileResourceType = gettype($feedFile);
@@ -45,14 +38,23 @@ class Feeder
             $file = $feedFile;
         }
 
-        // encrypt string and get value as base64 encoded string
-        $encryptedFile = ASECryptoStream::encrypt($file, $key, $initializationVector);
+        if ($encryptionDetails) {
+            $key = $encryptionDetails['key'];
+            $initializationVector = $encryptionDetails['initializationVector'];
+            // base64 decode before using in encryption
+            $initializationVector = base64_decode($initializationVector, true);
+            $key = base64_decode($key, true);
+            // encrypt string and get value as base64 encoded string
+            $encryptedFile = ASECryptoStream::encrypt($file, $key, $initializationVector);
+        } else {
+            $encryptedFile = $file;
+        }
 
         // my http client
         $client = new Client(['exceptions' => false]);
 
         $request = new Request(
-        // PUT!
+            // PUT!
             'PUT',
             // predefined url
             $feedUploadUrl,
@@ -78,18 +80,23 @@ class Feeder
      */
     public function downloadFeedProcessingReport($payload)
     {
-        $encryptionDetails = $payload['encryptionDetails'];
+        $encryptionDetails = $payload['encryptionDetails'] ?? null;
         $feedDownloadUrl = $payload['url'];
+        $file = file_get_contents($feedDownloadUrl);
+        if ($encryptionDetails) {
+            $key = $encryptionDetails['key'];
+            $initializationVector = $encryptionDetails['initializationVector'];
 
-        $key = $encryptionDetails['key'];
-        $initializationVector = $encryptionDetails['initializationVector'];
+            // base64 decode before using in encryption
+            $initializationVector = base64_decode($initializationVector, true);
+            $key = base64_decode($key, true);
 
-        // base64 decode before using in encryption
-        $initializationVector = base64_decode($initializationVector, true);
-        $key = base64_decode($key, true);
+            $decryptedFile = ASECryptoStream::decrypt($file, $key, $initializationVector);
+        } else {
+            $decryptedFile = $file;
+        }
 
-        $decryptedFile = ASECryptoStream::decrypt(file_get_contents($feedDownloadUrl), $key, $initializationVector);
-        if(isset($payload['compressionAlgorithm']) && $payload['compressionAlgorithm']=='GZIP') {
+        if (isset($payload['compressionAlgorithm']) && $payload['compressionAlgorithm'] == 'GZIP') {
             $decryptedFile = gzdecode($decryptedFile);
         }
         return $decryptedFile;
