@@ -2,8 +2,6 @@
 
 namespace DoubleBreak\Spapi;
 
-use GuzzleHttp\Client;
-
 class Credentials
 {
 
@@ -96,9 +94,7 @@ class Credentials
             return $knownToken;
         }
 
-        $client = $this->createHttpClient([
-            'base_uri' => 'https://api.amazon.com'
-        ]);
+        $client = $this->createHttpClient();
 
         try {
             $requestOptions = [
@@ -109,7 +105,7 @@ class Credentials
                     'client_secret' => $this->config['client_secret']
                 ]
             ];
-            $response = $client->post('/auth/o2/token', $requestOptions);
+            $response = $client->post('https://api.amazon.com/auth/o2/token', $requestOptions);
         } catch (\Exception $e) {
             //log something
             throw $e;
@@ -137,9 +133,7 @@ class Credentials
             return $knownToken;
         }
 
-        $client = $this->createHttpClient([
-            'base_uri' => 'https://api.amazon.com'
-        ]);
+        $client = $this->createHttpClient();
 
         try {
             $requestOptions = [
@@ -150,7 +144,7 @@ class Credentials
                     'client_secret' => $this->config['client_secret']
                 ]
             ];
-            $response = $client->post('/auth/o2/token', $requestOptions);
+            $response = $client->post('https://api.amazon.com/auth/o2/token', $requestOptions);
 
             $json = json_decode($response->getBody(), true);
 
@@ -178,9 +172,7 @@ class Credentials
             return $knownToken;
         }
 
-        $client = $this->createHttpClient([
-            'base_uri' => 'https://api.amazon.com'
-        ]);
+        $client = $this->createHttpClient();
 
         try {
             $requestOptions = [
@@ -191,7 +183,7 @@ class Credentials
                     'client_secret' => $this->config['client_secret']
                 ]
             ];
-            $response = $client->post('/auth/o2/token', $requestOptions);
+            $response = $client->post('https://api.amazon.com/auth/o2/token', $requestOptions);
 
             $json = json_decode($response->getBody(), true);
 
@@ -246,12 +238,10 @@ class Credentials
             'method' => 'POST',
         ]);
 
-        $client = $this->createHttpClient([
-            'base_uri' => 'https://' . $host
-        ]);
+        $client = $this->createHttpClient();
 
         try {
-            $response = $client->post($uri, $requestOptions);
+            $response = $client->post("https://{$host}{$uri}", $requestOptions);
 
             $json = json_decode($response->getBody(), true);
             $credentials = $json['AssumeRoleResponse']['AssumeRoleResult']['Credentials'] ?? null;
@@ -282,9 +272,7 @@ class Credentials
      */
     public function exchangesAuthorizationCodeForRefreshToken($authorizationCode)
     {
-        $client = $this->createHttpClient([
-            'base_uri' => 'https://api.amazon.com'
-        ]);
+        $client = $this->createHttpClient();
 
         try {
             $requestOptions = [
@@ -295,7 +283,7 @@ class Credentials
                     'client_secret' => $this->config['client_secret']
                 ]
             ];
-            $response = $client->post('/auth/o2/token', $requestOptions);
+            $response = $client->post('https://api.amazon.com/auth/o2/token', $requestOptions);
 
             return json_decode($response->getBody(), true);
 
