@@ -21,33 +21,37 @@ class Feeder
      * @throws \Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function uploadFeedDocument($payload, $contentType, $feedFile)
+    public function uploadFeedDocument($payload, $contentType, $feedContentFilePath)
     {
-        $encryptionDetails = $payload['encryptionDetails'] ?? null;
+        $key = null;
+        $initializationVector = null;
         $feedUploadUrl = $payload['url'];
 
-        // get file to upload
-        $fileResourceType = gettype($feedFile);
+        // check if encryption in required
+        if (isset($payload['encryptionDetails'])) {
+            $key = $payload['encryptionDetails']['key'];
+            $initializationVector = $payload['encryptionDetails']['initializationVector'];
 
-        // resource or string ? make it to a string
-        if ($fileResourceType == 'resource') {
-            $file = stream_get_contents($feedFile);
-        } elseif (file_exists($feedFile)) {
-            $file = file_get_contents($feedFile);
-        } else {
-            $file = $feedFile;
-        }
-
-        if ($encryptionDetails) {
-            $key = $encryptionDetails['key'];
-            $initializationVector = $encryptionDetails['initializationVector'];
             // base64 decode before using in encryption
             $initializationVector = base64_decode($initializationVector, true);
             $key = base64_decode($key, true);
-            // encrypt string and get value as base64 encoded string
-            $encryptedFile = ASECryptoStream::encrypt($file, $key, $initializationVector);
+        }
+
+        // get file to upload
+        $fileResourceType = gettype($feedContentFilePath);
+
+        // resource or string ? make it to a string
+        if ($fileResourceType == 'resource') {
+            $file_content = stream_get_contents($feedContentFilePath);
+        } elseif (file_exists($feedContentFilePath)) {
+            $file_content = file_get_contents($feedContentFilePath);
         } else {
-            $encryptedFile = $file;
+            $file_content = $feedContentFilePath;
+        }
+
+        if (!is_null($key)) {
+            // encrypt string and get value as base64 encoded string
+            $file_content = ASECryptoStream::encrypt($file_content, $key, $initializationVector);
         }
 
         // my http client
@@ -61,7 +65,7 @@ class Feeder
             // content type equal to content type from response createFeedDocument-operation
             array('Content-Type' => $contentType),
             // resource File
-            $encryptedFile
+            $file_content
         );
 
         $response = $client->send($request);
@@ -80,25 +84,47 @@ class Feeder
      */
     public function downloadFeedProcessingReport($payload)
     {
-        $encryptionDetails = $payload['encryptionDetails'] ?? null;
-        $feedDownloadUrl = $payload['url'];
-        $file = file_get_contents($feedDownloadUrl);
-        if ($encryptionDetails) {
-            $key = $encryptionDetails['key'];
-            $initializationVector = $encryptionDetails['initializationVector'];
+        $key = null;
+        $initializationVector = null;
+        $feedUploadUrl = $payload['url'];
+
+        // check if decryption in required
+        if (isset($payload['encryptionDetails'])) {
+            $key = $payload['encryptionDetails']['key'];
+            $initializationVector = $payload['encryptionDetails']['initializationVector'];
 
             // base64 decode before using in encryption
             $initializationVector = base64_decode($initializationVector, true);
             $key = base64_decode($key, true);
+        }
 
-            $decryptedFile = ASECryptoStream::decrypt($file, $key, $initializationVector);
+        $feedDownloadUrl = $payload['url'];
+
+        if (!is_null($key)) {
+            $feed_processing_report_content = ASECryptoStream::decrypt(file_get_contents($feedDownloadUrl), $key, $initializationVector);
         } else {
-            $decryptedFile = $file;
+            $feed_processing_report_content = file_get_contents($feedDownloadUrl);
         }
 
         if (isset($payload['compressionAlgorithm']) && $payload['compressionAlgorithm'] == 'GZIP') {
-            $decryptedFile = gzdecode($decryptedFile);
+            $feed_processing_report_content = gzdecode($feed_processing_report_content);
         }
-        return $decryptedFile;
+
+        // check if report content is json encoded or not
+        if ($this->isJson($feed_processing_report_content) == true) {
+            $json = $feed_processing_report_content;
+        } else {
+            $feed_processing_report_content = preg_replace('/\s+/S', " ", $feed_processing_report_content);
+            $xml = simplexml_load_string($feed_processing_report_content);
+            $json = json_encode($xml);
+        }
+
+        return json_decode($json, TRUE);
+    }
+
+    public function isJson($string)
+    {
+        json_decode($string);
+        return json_last_error() === JSON_ERROR_NONE;
     }
 }

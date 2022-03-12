@@ -1,7 +1,9 @@
 <?php
+
 namespace DoubleBreak\Spapi;
 
-class Client {
+class Client
+{
 
   use HttpClientFactoryTrait;
 
@@ -34,18 +36,20 @@ class Client {
   private function normalizeHeaders($headers)
   {
     return $result = array_combine(
-       array_map(function($header) { return strtolower($header); }, array_keys($headers)),
-       $headers
+      array_map(function ($header) {
+        return strtolower($header);
+      }, array_keys($headers)),
+      $headers
     );
-
   }
 
   private function headerValue($header)
   {
-      return \GuzzleHttp\Psr7\Header::parse($header)[0];
+    return \GuzzleHttp\Psr7\Header::parse($header)[0];
   }
 
-  public function send($uri, $requestOptions = [])
+
+  private function prepareRequestOptions($uri, $requestOptions)
   {
     $requestOptions['headers'] = $requestOptions['headers'] ?? [];
     $requestOptions['headers']['accept'] = 'application/json';
@@ -84,8 +88,14 @@ class Client {
     //Sign
     $requestOptions = $this->signer->sign($requestOptions, $signOptions);
 
-    //Prep client and send the request
-    $client = $this->getHttpClient();
+    return $requestOptions;
+  }
+
+  public function send($uri, $requestOptions = [])
+  {
+
+    $requestOptions = $this->prepareRequestOptions($uri, $requestOptions);
+    $client = $this->createHttpClient();
 
     try {
       $this->lastHttpResponse = null;
@@ -94,7 +104,7 @@ class Client {
       $response = $client->request($method, $uri, $requestOptions);
       $this->lastHttpResponse = $response;
       return json_decode($response->getBody(), true);
-    } catch (\GuzzleHttp\Exception\RequestException $e) {
+    } catch (\GuzzleHttp\Exception\ClientException $e) {
       $this->lastHttpResponse = $e->getResponse();
       $ex = new \GuzzleHttp\Exception\RequestException(
         $this->lastHttpResponse->getBody()->getContents(),
@@ -105,12 +115,19 @@ class Client {
       );
       throw $ex;
     }
+  }
 
+  public function sendAsync($uri, $requestOptions)
+  {
+    $requestOptions = $this->prepareRequestOptions($uri, $requestOptions);
+    $client = $this->createHttpClient();
+    $method = $requestOptions['method'];
+    unset($requestOptions['method']);
+    return  $client->requestAsync($method, $uri, $requestOptions);
   }
 
   public function getLastHttpResponse()
   {
     return $this->lastHttpResponse;
   }
-
 }
