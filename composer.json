@@ -9,8 +9,8 @@
      }
   ],
   "require": {
-    "guzzlehttp/guzzle": "^6.5",
-    "guzzlehttp/psr7": "^1.7",
+    "guzzlehttp/guzzle": ">=6.5",
+    "guzzlehttp/psr7": ">=1.7",
     "ext-simplexml": "*",
     "ext-json": "*",
     "ext-zlib": "*"

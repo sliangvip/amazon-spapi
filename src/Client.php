@@ -68,12 +68,12 @@ class Client {
     if (isset($requestOptions['query'])) {
       $query = $requestOptions['query'];
       ksort($query);
-      $signOptions['query_string'] =  \GuzzleHttp\Psr7\build_query($query);
+      $signOptions['query_string'] =  \GuzzleHttp\Psr7\Query::build($query);
     }
 
     if (isset($requestOptions['form_params'])) {
       ksort($requestOptions['form_params']);
-      $signOptions['payload'] = \GuzzleHttp\Psr7\build_query($requestOptions['form_params']);
+      $signOptions['payload'] = \GuzzleHttp\Psr7\Query::build($requestOptions['form_params']);
     }
 
     if (isset($requestOptions['json'])) {
@@ -94,9 +94,16 @@ class Client {
       $response = $client->request($method, $uri, $requestOptions);
       $this->lastHttpResponse = $response;
       return json_decode($response->getBody(), true);
-    } catch (\GuzzleHttp\Exception\ClientException $e) {
+    } catch (\GuzzleHttp\Exception\RequestException $e) {
       $this->lastHttpResponse = $e->getResponse();
-      throw $e;
+      $ex = new \GuzzleHttp\Exception\RequestException(
+        $this->lastHttpResponse->getBody()->getContents(),
+        $e->getRequest(),
+        $e->getResponse(),
+        $e,
+        $e->getHandlerContext()
+      );
+      throw $ex;
     }
 
   }
