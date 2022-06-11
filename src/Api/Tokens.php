@@ -16,13 +16,19 @@ use DoubleBreak\Spapi\Client;
 
 class Tokens extends Client {
 
+  protected $apiVersion = '2021-03-01';
+
+  protected $versions = [
+    '2021-03-01' => '2021-03-01',
+  ];
+
   /**
   * Operation createRestrictedDataToken
   *
   */
   public function createRestrictedDataToken($body = [])
   {
-    return $this->send("/tokens/2021-03-01/restrictedDataToken", [
+    return $this->send("/tokens/{$this->apiVersion}/restrictedDataToken", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -30,7 +36,7 @@ class Tokens extends Client {
 
   public function createRestrictedDataTokenAsync($body = [])
   {
-    return $this->sendAsync("/tokens/2021-03-01/restrictedDataToken", [
+    return $this->sendAsync("/tokens/{$this->apiVersion}/restrictedDataToken", [
       'method' => 'POST',
       'json' => $body
     ]);

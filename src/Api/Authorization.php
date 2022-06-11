@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class Authorization extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation getAuthorizationCode
   *
@@ -25,7 +31,7 @@ class Authorization extends Client {
   */
   public function getAuthorizationCode($queryParams = [])
   {
-    return $this->send("/authorization/v1/authorizationCode", [
+    return $this->send("/authorization/{$this->apiVersion}/authorizationCode", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -33,7 +39,7 @@ class Authorization extends Client {
 
   public function getAuthorizationCodeAsync($queryParams = [])
   {
-    return $this->sendAsync("/authorization/v1/authorizationCode", [
+    return $this->sendAsync("/authorization/{$this->apiVersion}/authorizationCode", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);

@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class ProductPricing extends Client {
 
+  protected $apiVersion = 'v0';
+
+  protected $versions = [
+    'v0' => 'v0',
+  ];
+
   /**
   * Operation getPricing
   *
@@ -28,7 +34,7 @@ class ProductPricing extends Client {
   */
   public function getPricing($queryParams = [])
   {
-    return $this->send("/products/pricing/v0/price", [
+    return $this->send("/products/pricing/{$this->apiVersion}/price", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -36,7 +42,7 @@ class ProductPricing extends Client {
 
   public function getPricingAsync($queryParams = [])
   {
-    return $this->sendAsync("/products/pricing/v0/price", [
+    return $this->sendAsync("/products/pricing/{$this->apiVersion}/price", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -55,7 +61,7 @@ class ProductPricing extends Client {
   */
   public function getCompetitivePricing($queryParams = [])
   {
-    return $this->send("/products/pricing/v0/competitivePrice", [
+    return $this->send("/products/pricing/{$this->apiVersion}/competitivePrice", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -63,7 +69,7 @@ class ProductPricing extends Client {
 
   public function getCompetitivePricingAsync($queryParams = [])
   {
-    return $this->sendAsync("/products/pricing/v0/competitivePrice", [
+    return $this->sendAsync("/products/pricing/{$this->apiVersion}/competitivePrice", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -82,7 +88,7 @@ class ProductPricing extends Client {
   */
   public function getListingOffers($sellerSKU, $queryParams = [])
   {
-    return $this->send("/products/pricing/v0/listings/{$sellerSKU}/offers", [
+    return $this->send("/products/pricing/{$this->apiVersion}/listings/{$sellerSKU}/offers", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -90,7 +96,7 @@ class ProductPricing extends Client {
 
   public function getListingOffersAsync($sellerSKU, $queryParams = [])
   {
-    return $this->sendAsync("/products/pricing/v0/listings/{$sellerSKU}/offers", [
+    return $this->sendAsync("/products/pricing/{$this->apiVersion}/listings/{$sellerSKU}/offers", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -109,7 +115,7 @@ class ProductPricing extends Client {
   */
   public function getItemOffers($asin, $queryParams = [])
   {
-    return $this->send("/products/pricing/v0/items/{$asin}/offers", [
+    return $this->send("/products/pricing/{$this->apiVersion}/items/{$asin}/offers", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -117,7 +123,7 @@ class ProductPricing extends Client {
 
   public function getItemOffersAsync($asin, $queryParams = [])
   {
-    return $this->sendAsync("/products/pricing/v0/items/{$asin}/offers", [
+    return $this->sendAsync("/products/pricing/{$this->apiVersion}/items/{$asin}/offers", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);

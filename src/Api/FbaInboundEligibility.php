@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class FbaInboundEligibility extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation getItemEligibilityPreview
   *
@@ -25,7 +31,7 @@ class FbaInboundEligibility extends Client {
   */
   public function getItemEligibilityPreview($queryParams = [])
   {
-    return $this->send("/fba/inbound/v1/eligibility/itemPreview", [
+    return $this->send("/fba/inbound/{$this->apiVersion}/eligibility/itemPreview", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -33,7 +39,7 @@ class FbaInboundEligibility extends Client {
 
   public function getItemEligibilityPreviewAsync($queryParams = [])
   {
-    return $this->sendAsync("/fba/inbound/v1/eligibility/itemPreview", [
+    return $this->sendAsync("/fba/inbound/{$this->apiVersion}/eligibility/itemPreview", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);

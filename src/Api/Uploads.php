@@ -14,10 +14,16 @@ use DoubleBreak\Spapi\Client;
 
 class Uploads extends Client {
 
+  protected $apiVersion = '2020-11-01';
+
+  protected $versions = [
+    '2020-11-01' => '2020-11-01',
+  ];
+
   /**
   * Operation createUploadDestinationForResource
   *
-  * @param string $resource The resource for the upload destination that you are creating. For example, if you are creating an upload destination for the createLegalDisclosure operation of the Messaging API, the {resource} would be /messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure, and the entire path would be /uploads/2020-11-01/uploadDestinations/messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure.
+  * @param string $resource The resource for the upload destination that you are creating. For example, if you are creating an upload destination for the createLegalDisclosure operation of the Messaging API, the {resource} would be /messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure, and the entire path would be /uploads/{$this->apiVersion}/uploadDestinations/messaging/v1/orders/{amazonOrderId}/messages/legalDisclosure.
   *
   * @param array $queryParams
   *    - *marketplaceIds* array - A list of marketplace identifiers. This specifies the marketplaces where the upload will be available. Only one marketplace can be specified.
@@ -27,7 +33,7 @@ class Uploads extends Client {
   */
   public function createUploadDestinationForResource($resource, $queryParams = [])
   {
-    return $this->send("/uploads/2020-11-01/uploadDestinations/{$resource}", [
+    return $this->send("/uploads/{$this->apiVersion}/uploadDestinations/{$resource}", [
       'method' => 'POST',
       'query' => $queryParams,
     ]);
@@ -35,7 +41,7 @@ class Uploads extends Client {
 
   public function createUploadDestinationForResourceAsync($resource, $queryParams = [])
   {
-    return $this->sendAsync("/uploads/2020-11-01/uploadDestinations/{$resource}", [
+    return $this->sendAsync("/uploads/{$this->apiVersion}/uploadDestinations/{$resource}", [
       'method' => 'POST',
       'query' => $queryParams,
     ]);

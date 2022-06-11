@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class FulfillmentInbound extends Client {
 
+  protected $apiVersion = 'v0';
+
+  protected $versions = [
+    'v0' => 'v0',
+  ];
+
   /**
   * Operation getInboundGuidance
   *
@@ -25,7 +31,7 @@ class FulfillmentInbound extends Client {
   */
   public function getInboundGuidance($queryParams = [])
   {
-    return $this->send("/fba/inbound/v0/itemsGuidance", [
+    return $this->send("/fba/inbound/{$this->apiVersion}/itemsGuidance", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -33,7 +39,7 @@ class FulfillmentInbound extends Client {
 
   public function getInboundGuidanceAsync($queryParams = [])
   {
-    return $this->sendAsync("/fba/inbound/v0/itemsGuidance", [
+    return $this->sendAsync("/fba/inbound/{$this->apiVersion}/itemsGuidance", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -45,7 +51,7 @@ class FulfillmentInbound extends Client {
   */
   public function createInboundShipmentPlan($body = [])
   {
-    return $this->send("/fba/inbound/v0/plans", [
+    return $this->send("/fba/inbound/{$this->apiVersion}/plans", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -53,7 +59,7 @@ class FulfillmentInbound extends Client {
 
   public function createInboundShipmentPlanAsync($body = [])
   {
-    return $this->sendAsync("/fba/inbound/v0/plans", [
+    return $this->sendAsync("/fba/inbound/{$this->apiVersion}/plans", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -67,7 +73,7 @@ class FulfillmentInbound extends Client {
   */
   public function createInboundShipment($shipmentId, $body = [])
   {
-    return $this->send("/fba/inbound/v0/shipments/{$shipmentId}", [
+    return $this->send("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -75,7 +81,7 @@ class FulfillmentInbound extends Client {
 
   public function createInboundShipmentAsync($shipmentId, $body = [])
   {
-    return $this->sendAsync("/fba/inbound/v0/shipments/{$shipmentId}", [
+    return $this->sendAsync("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -89,7 +95,7 @@ class FulfillmentInbound extends Client {
   */
   public function updateInboundShipment($shipmentId, $body = [])
   {
-    return $this->send("/fba/inbound/v0/shipments/{$shipmentId}", [
+    return $this->send("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}", [
       'method' => 'PUT',
       'json' => $body
     ]);
@@ -97,7 +103,7 @@ class FulfillmentInbound extends Client {
 
   public function updateInboundShipmentAsync($shipmentId, $body = [])
   {
-    return $this->sendAsync("/fba/inbound/v0/shipments/{$shipmentId}", [
+    return $this->sendAsync("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}", [
       'method' => 'PUT',
       'json' => $body
     ]);
@@ -114,7 +120,7 @@ class FulfillmentInbound extends Client {
   */
   public function getPreorderInfo($shipmentId, $queryParams = [])
   {
-    return $this->send("/fba/inbound/v0/shipments/{$shipmentId}/preorder", [
+    return $this->send("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/preorder", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -122,7 +128,7 @@ class FulfillmentInbound extends Client {
 
   public function getPreorderInfoAsync($shipmentId, $queryParams = [])
   {
-    return $this->sendAsync("/fba/inbound/v0/shipments/{$shipmentId}/preorder", [
+    return $this->sendAsync("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/preorder", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -140,7 +146,7 @@ class FulfillmentInbound extends Client {
   */
   public function confirmPreorder($shipmentId, $queryParams = [])
   {
-    return $this->send("/fba/inbound/v0/shipments/{$shipmentId}/preorder/confirm", [
+    return $this->send("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/preorder/confirm", [
       'method' => 'PUT',
       'query' => $queryParams,
     ]);
@@ -148,7 +154,7 @@ class FulfillmentInbound extends Client {
 
   public function confirmPreorderAsync($shipmentId, $queryParams = [])
   {
-    return $this->sendAsync("/fba/inbound/v0/shipments/{$shipmentId}/preorder/confirm", [
+    return $this->sendAsync("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/preorder/confirm", [
       'method' => 'PUT',
       'query' => $queryParams,
     ]);
@@ -169,7 +175,7 @@ class FulfillmentInbound extends Client {
   */
   public function getPrepInstructions($queryParams = [])
   {
-    return $this->send("/fba/inbound/v0/prepInstructions", [
+    return $this->send("/fba/inbound/{$this->apiVersion}/prepInstructions", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -177,7 +183,7 @@ class FulfillmentInbound extends Client {
 
   public function getPrepInstructionsAsync($queryParams = [])
   {
-    return $this->sendAsync("/fba/inbound/v0/prepInstructions", [
+    return $this->sendAsync("/fba/inbound/{$this->apiVersion}/prepInstructions", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -191,14 +197,14 @@ class FulfillmentInbound extends Client {
   */
   public function getTransportDetails($shipmentId)
   {
-    return $this->send("/fba/inbound/v0/shipments/{$shipmentId}/transport", [
+    return $this->send("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/transport", [
       'method' => 'GET',
     ]);
   }
 
   public function getTransportDetailsAsync($shipmentId)
   {
-    return $this->sendAsync("/fba/inbound/v0/shipments/{$shipmentId}/transport", [
+    return $this->sendAsync("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/transport", [
       'method' => 'GET',
     ]);
   }
@@ -211,7 +217,7 @@ class FulfillmentInbound extends Client {
   */
   public function putTransportDetails($shipmentId, $body = [])
   {
-    return $this->send("/fba/inbound/v0/shipments/{$shipmentId}/transport", [
+    return $this->send("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/transport", [
       'method' => 'PUT',
       'json' => $body
     ]);
@@ -219,7 +225,7 @@ class FulfillmentInbound extends Client {
 
   public function putTransportDetailsAsync($shipmentId, $body = [])
   {
-    return $this->sendAsync("/fba/inbound/v0/shipments/{$shipmentId}/transport", [
+    return $this->sendAsync("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/transport", [
       'method' => 'PUT',
       'json' => $body
     ]);
@@ -233,14 +239,14 @@ class FulfillmentInbound extends Client {
   */
   public function voidTransport($shipmentId)
   {
-    return $this->send("/fba/inbound/v0/shipments/{$shipmentId}/transport/void", [
+    return $this->send("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/transport/void", [
       'method' => 'POST',
     ]);
   }
 
   public function voidTransportAsync($shipmentId)
   {
-    return $this->sendAsync("/fba/inbound/v0/shipments/{$shipmentId}/transport/void", [
+    return $this->sendAsync("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/transport/void", [
       'method' => 'POST',
     ]);
   }
@@ -253,14 +259,14 @@ class FulfillmentInbound extends Client {
   */
   public function estimateTransport($shipmentId)
   {
-    return $this->send("/fba/inbound/v0/shipments/{$shipmentId}/transport/estimate", [
+    return $this->send("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/transport/estimate", [
       'method' => 'POST',
     ]);
   }
 
   public function estimateTransportAsync($shipmentId)
   {
-    return $this->sendAsync("/fba/inbound/v0/shipments/{$shipmentId}/transport/estimate", [
+    return $this->sendAsync("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/transport/estimate", [
       'method' => 'POST',
     ]);
   }
@@ -273,14 +279,14 @@ class FulfillmentInbound extends Client {
   */
   public function confirmTransport($shipmentId)
   {
-    return $this->send("/fba/inbound/v0/shipments/{$shipmentId}/transport/confirm", [
+    return $this->send("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/transport/confirm", [
       'method' => 'POST',
     ]);
   }
 
   public function confirmTransportAsync($shipmentId)
   {
-    return $this->sendAsync("/fba/inbound/v0/shipments/{$shipmentId}/transport/confirm", [
+    return $this->sendAsync("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/transport/confirm", [
       'method' => 'POST',
     ]);
   }
@@ -304,7 +310,7 @@ class FulfillmentInbound extends Client {
   */
   public function getLabels($shipmentId, $queryParams = [])
   {
-    return $this->send("/fba/inbound/v0/shipments/{$shipmentId}/labels", [
+    return $this->send("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/labels", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -312,7 +318,7 @@ class FulfillmentInbound extends Client {
 
   public function getLabelsAsync($shipmentId, $queryParams = [])
   {
-    return $this->sendAsync("/fba/inbound/v0/shipments/{$shipmentId}/labels", [
+    return $this->sendAsync("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/labels", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -326,14 +332,14 @@ class FulfillmentInbound extends Client {
   */
   public function getBillOfLading($shipmentId)
   {
-    return $this->send("/fba/inbound/v0/shipments/{$shipmentId}/billOfLading", [
+    return $this->send("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/billOfLading", [
       'method' => 'GET',
     ]);
   }
 
   public function getBillOfLadingAsync($shipmentId)
   {
-    return $this->sendAsync("/fba/inbound/v0/shipments/{$shipmentId}/billOfLading", [
+    return $this->sendAsync("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/billOfLading", [
       'method' => 'GET',
     ]);
   }
@@ -353,7 +359,7 @@ class FulfillmentInbound extends Client {
   */
   public function getShipments($queryParams = [])
   {
-    return $this->send("/fba/inbound/v0/shipments", [
+    return $this->send("/fba/inbound/{$this->apiVersion}/shipments", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -361,7 +367,7 @@ class FulfillmentInbound extends Client {
 
   public function getShipmentsAsync($queryParams = [])
   {
-    return $this->sendAsync("/fba/inbound/v0/shipments", [
+    return $this->sendAsync("/fba/inbound/{$this->apiVersion}/shipments", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -378,7 +384,7 @@ class FulfillmentInbound extends Client {
   */
   public function getShipmentItemsByShipmentId($shipmentId, $queryParams = [])
   {
-    return $this->send("/fba/inbound/v0/shipments/{$shipmentId}/items", [
+    return $this->send("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/items", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -386,7 +392,7 @@ class FulfillmentInbound extends Client {
 
   public function getShipmentItemsByShipmentIdAsync($shipmentId, $queryParams = [])
   {
-    return $this->sendAsync("/fba/inbound/v0/shipments/{$shipmentId}/items", [
+    return $this->sendAsync("/fba/inbound/{$this->apiVersion}/shipments/{$shipmentId}/items", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -405,7 +411,7 @@ class FulfillmentInbound extends Client {
   */
   public function getShipmentItems($queryParams = [])
   {
-    return $this->send("/fba/inbound/v0/shipmentItems", [
+    return $this->send("/fba/inbound/{$this->apiVersion}/shipmentItems", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -413,7 +419,7 @@ class FulfillmentInbound extends Client {
 
   public function getShipmentItemsAsync($queryParams = [])
   {
-    return $this->sendAsync("/fba/inbound/v0/shipmentItems", [
+    return $this->sendAsync("/fba/inbound/{$this->apiVersion}/shipmentItems", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);

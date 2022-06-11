@@ -14,13 +14,19 @@ use DoubleBreak\Spapi\Client;
 
 class Shipping extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation createShipment
   *
   */
   public function createShipment($body = [])
   {
-    return $this->send("/shipping/v1/shipments", [
+    return $this->send("/shipping/{$this->apiVersion}/shipments", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -28,7 +34,7 @@ class Shipping extends Client {
 
   public function createShipmentAsync($body = [])
   {
-    return $this->sendAsync("/shipping/v1/shipments", [
+    return $this->sendAsync("/shipping/{$this->apiVersion}/shipments", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -42,14 +48,14 @@ class Shipping extends Client {
   */
   public function getShipment($shipmentId)
   {
-    return $this->send("/shipping/v1/shipments/{$shipmentId}", [
+    return $this->send("/shipping/{$this->apiVersion}/shipments/{$shipmentId}", [
       'method' => 'GET',
     ]);
   }
 
   public function getShipmentAsync($shipmentId)
   {
-    return $this->sendAsync("/shipping/v1/shipments/{$shipmentId}", [
+    return $this->sendAsync("/shipping/{$this->apiVersion}/shipments/{$shipmentId}", [
       'method' => 'GET',
     ]);
   }
@@ -62,14 +68,14 @@ class Shipping extends Client {
   */
   public function cancelShipment($shipmentId)
   {
-    return $this->send("/shipping/v1/shipments/{$shipmentId}/cancel", [
+    return $this->send("/shipping/{$this->apiVersion}/shipments/{$shipmentId}/cancel", [
       'method' => 'POST',
     ]);
   }
 
   public function cancelShipmentAsync($shipmentId)
   {
-    return $this->sendAsync("/shipping/v1/shipments/{$shipmentId}/cancel", [
+    return $this->sendAsync("/shipping/{$this->apiVersion}/shipments/{$shipmentId}/cancel", [
       'method' => 'POST',
     ]);
   }
@@ -82,7 +88,7 @@ class Shipping extends Client {
   */
   public function purchaseLabels($shipmentId, $body = [])
   {
-    return $this->send("/shipping/v1/shipments/{$shipmentId}/purchaseLabels", [
+    return $this->send("/shipping/{$this->apiVersion}/shipments/{$shipmentId}/purchaseLabels", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -90,7 +96,7 @@ class Shipping extends Client {
 
   public function purchaseLabelsAsync($shipmentId, $body = [])
   {
-    return $this->sendAsync("/shipping/v1/shipments/{$shipmentId}/purchaseLabels", [
+    return $this->sendAsync("/shipping/{$this->apiVersion}/shipments/{$shipmentId}/purchaseLabels", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -105,7 +111,7 @@ class Shipping extends Client {
   */
   public function retrieveShippingLabel($shipmentId, $trackingId, $body = [])
   {
-    return $this->send("/shipping/v1/shipments/{$shipmentId}/containers/{$trackingId}/label", [
+    return $this->send("/shipping/{$this->apiVersion}/shipments/{$shipmentId}/containers/{$trackingId}/label", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -113,7 +119,7 @@ class Shipping extends Client {
 
   public function retrieveShippingLabelAsync($shipmentId, $trackingId, $body = [])
   {
-    return $this->sendAsync("/shipping/v1/shipments/{$shipmentId}/containers/{$trackingId}/label", [
+    return $this->sendAsync("/shipping/{$this->apiVersion}/shipments/{$shipmentId}/containers/{$trackingId}/label", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -125,7 +131,7 @@ class Shipping extends Client {
   */
   public function purchaseShipment($body = [])
   {
-    return $this->send("/shipping/v1/purchaseShipment", [
+    return $this->send("/shipping/{$this->apiVersion}/purchaseShipment", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -133,7 +139,7 @@ class Shipping extends Client {
 
   public function purchaseShipmentAsync($body = [])
   {
-    return $this->sendAsync("/shipping/v1/purchaseShipment", [
+    return $this->sendAsync("/shipping/{$this->apiVersion}/purchaseShipment", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -145,7 +151,7 @@ class Shipping extends Client {
   */
   public function getRates($body = [])
   {
-    return $this->send("/shipping/v1/rates", [
+    return $this->send("/shipping/{$this->apiVersion}/rates", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -153,7 +159,7 @@ class Shipping extends Client {
 
   public function getRatesAsync($body = [])
   {
-    return $this->sendAsync("/shipping/v1/rates", [
+    return $this->sendAsync("/shipping/{$this->apiVersion}/rates", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -165,14 +171,14 @@ class Shipping extends Client {
   */
   public function getAccount()
   {
-    return $this->send("/shipping/v1/account", [
+    return $this->send("/shipping/{$this->apiVersion}/account", [
       'method' => 'GET',
     ]);
   }
 
   public function getAccountAsync()
   {
-    return $this->sendAsync("/shipping/v1/account", [
+    return $this->sendAsync("/shipping/{$this->apiVersion}/account", [
       'method' => 'GET',
     ]);
   }
@@ -185,14 +191,14 @@ class Shipping extends Client {
   */
   public function getTrackingInformation($trackingId)
   {
-    return $this->send("/shipping/v1/tracking/{$trackingId}", [
+    return $this->send("/shipping/{$this->apiVersion}/tracking/{$trackingId}", [
       'method' => 'GET',
     ]);
   }
 
   public function getTrackingInformationAsync($trackingId)
   {
-    return $this->sendAsync("/shipping/v1/tracking/{$trackingId}", [
+    return $this->sendAsync("/shipping/{$this->apiVersion}/tracking/{$trackingId}", [
       'method' => 'GET',
     ]);
   }

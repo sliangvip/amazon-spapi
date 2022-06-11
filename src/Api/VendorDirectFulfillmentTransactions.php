@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class VendorDirectFulfillmentTransactions extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation getTransactionStatus
   *
@@ -22,14 +28,14 @@ class VendorDirectFulfillmentTransactions extends Client {
   */
   public function getTransactionStatus($transactionId)
   {
-    return $this->send("/vendor/directFulfillment/transactions/v1/transactions/{$transactionId}", [
+    return $this->send("/vendor/directFulfillment/transactions/{$this->apiVersion}/transactions/{$transactionId}", [
       'method' => 'GET',
     ]);
   }
 
   public function getTransactionStatusAsync($transactionId)
   {
-    return $this->sendAsync("/vendor/directFulfillment/transactions/v1/transactions/{$transactionId}", [
+    return $this->sendAsync("/vendor/directFulfillment/transactions/{$this->apiVersion}/transactions/{$transactionId}", [
       'method' => 'GET',
     ]);
   }

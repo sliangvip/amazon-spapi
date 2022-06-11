@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class Orders extends Client {
 
+  protected $apiVersion = 'v0';
+
+  protected $versions = [
+    'v0' => 'v0',
+  ];
+
   /**
   * Operation getOrders
   *
@@ -41,7 +47,7 @@ class Orders extends Client {
   */
   public function getOrders($queryParams = [])
   {
-    return $this->send("/orders/v0/orders", [
+    return $this->send("/orders/{$this->apiVersion}/orders", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -49,7 +55,7 @@ class Orders extends Client {
 
   public function getOrdersAsync($queryParams = [])
   {
-    return $this->sendAsync("/orders/v0/orders", [
+    return $this->sendAsync("/orders/{$this->apiVersion}/orders", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -63,14 +69,14 @@ class Orders extends Client {
   */
   public function getOrder($orderId)
   {
-    return $this->send("/orders/v0/orders/{$orderId}", [
+    return $this->send("/orders/{$this->apiVersion}/orders/{$orderId}", [
       'method' => 'GET',
     ]);
   }
 
   public function getOrderAsync($orderId)
   {
-    return $this->sendAsync("/orders/v0/orders/{$orderId}", [
+    return $this->sendAsync("/orders/{$this->apiVersion}/orders/{$orderId}", [
       'method' => 'GET',
     ]);
   }
@@ -83,14 +89,14 @@ class Orders extends Client {
   */
   public function getOrderBuyerInfo($orderId)
   {
-    return $this->send("/orders/v0/orders/{$orderId}/buyerInfo", [
+    return $this->send("/orders/{$this->apiVersion}/orders/{$orderId}/buyerInfo", [
       'method' => 'GET',
     ]);
   }
 
   public function getOrderBuyerInfoAsync($orderId)
   {
-    return $this->sendAsync("/orders/v0/orders/{$orderId}/buyerInfo", [
+    return $this->sendAsync("/orders/{$this->apiVersion}/orders/{$orderId}/buyerInfo", [
       'method' => 'GET',
     ]);
   }
@@ -103,14 +109,14 @@ class Orders extends Client {
   */
   public function getOrderAddress($orderId)
   {
-    return $this->send("/orders/v0/orders/{$orderId}/address", [
+    return $this->send("/orders/{$this->apiVersion}/orders/{$orderId}/address", [
       'method' => 'GET',
     ]);
   }
 
   public function getOrderAddressAsync($orderId)
   {
-    return $this->sendAsync("/orders/v0/orders/{$orderId}/address", [
+    return $this->sendAsync("/orders/{$this->apiVersion}/orders/{$orderId}/address", [
       'method' => 'GET',
     ]);
   }
@@ -126,7 +132,7 @@ class Orders extends Client {
   */
   public function getOrderItems($orderId, $queryParams = [])
   {
-    return $this->send("/orders/v0/orders/{$orderId}/orderItems", [
+    return $this->send("/orders/{$this->apiVersion}/orders/{$orderId}/orderItems", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -134,7 +140,7 @@ class Orders extends Client {
 
   public function getOrderItemsAsync($orderId, $queryParams = [])
   {
-    return $this->sendAsync("/orders/v0/orders/{$orderId}/orderItems", [
+    return $this->sendAsync("/orders/{$this->apiVersion}/orders/{$orderId}/orderItems", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -151,7 +157,7 @@ class Orders extends Client {
   */
   public function getOrderItemsBuyerInfo($orderId, $queryParams = [])
   {
-    return $this->send("/orders/v0/orders/{$orderId}/orderItems/buyerInfo", [
+    return $this->send("/orders/{$this->apiVersion}/orders/{$orderId}/orderItems/buyerInfo", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -159,7 +165,7 @@ class Orders extends Client {
 
   public function getOrderItemsBuyerInfoAsync($orderId, $queryParams = [])
   {
-    return $this->sendAsync("/orders/v0/orders/{$orderId}/orderItems/buyerInfo", [
+    return $this->sendAsync("/orders/{$this->apiVersion}/orders/{$orderId}/orderItems/buyerInfo", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -173,7 +179,7 @@ class Orders extends Client {
   */
   public function updateShipmentStatus($orderId, $body = [])
   {
-    return $this->send("/orders/v0/orders/{$orderId}/shipment", [
+    return $this->send("/orders/{$this->apiVersion}/orders/{$orderId}/shipment", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -181,7 +187,7 @@ class Orders extends Client {
 
   public function updateShipmentStatusAsync($orderId, $body = [])
   {
-    return $this->sendAsync("/orders/v0/orders/{$orderId}/shipment", [
+    return $this->sendAsync("/orders/{$this->apiVersion}/orders/{$orderId}/shipment", [
       'method' => 'POST',
       'json' => $body
     ]);

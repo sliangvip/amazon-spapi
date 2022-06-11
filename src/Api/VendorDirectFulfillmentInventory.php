@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class VendorDirectFulfillmentInventory extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation submitInventoryUpdate
   *
@@ -22,7 +28,7 @@ class VendorDirectFulfillmentInventory extends Client {
   */
   public function submitInventoryUpdate($warehouseId, $body = [])
   {
-    return $this->send("/vendor/directFulfillment/inventory/v1/warehouses/{$warehouseId}/items", [
+    return $this->send("/vendor/directFulfillment/inventory/{$this->apiVersion}/warehouses/{$warehouseId}/items", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -30,7 +36,7 @@ class VendorDirectFulfillmentInventory extends Client {
 
   public function submitInventoryUpdateAsync($warehouseId, $body = [])
   {
-    return $this->sendAsync("/vendor/directFulfillment/inventory/v1/warehouses/{$warehouseId}/items", [
+    return $this->sendAsync("/vendor/directFulfillment/inventory/{$this->apiVersion}/warehouses/{$warehouseId}/items", [
       'method' => 'POST',
       'json' => $body
     ]);

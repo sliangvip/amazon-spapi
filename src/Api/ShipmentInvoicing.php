@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class ShipmentInvoicing extends Client {
 
+  protected $apiVersion = 'v0';
+
+  protected $versions = [
+    'v0' => 'v0',
+  ];
+
   /**
   * Operation getShipmentDetails
   *
@@ -22,14 +28,14 @@ class ShipmentInvoicing extends Client {
   */
   public function getShipmentDetails($shipmentId)
   {
-    return $this->send("/fba/outbound/brazil/v0/shipments/{$shipmentId}", [
+    return $this->send("/fba/outbound/brazil/{$this->apiVersion}/shipments/{$shipmentId}", [
       'method' => 'GET',
     ]);
   }
 
   public function getShipmentDetailsAsync($shipmentId)
   {
-    return $this->sendAsync("/fba/outbound/brazil/v0/shipments/{$shipmentId}", [
+    return $this->sendAsync("/fba/outbound/brazil/{$this->apiVersion}/shipments/{$shipmentId}", [
       'method' => 'GET',
     ]);
   }
@@ -42,7 +48,7 @@ class ShipmentInvoicing extends Client {
   */
   public function submitInvoice($shipmentId, $body = [])
   {
-    return $this->send("/fba/outbound/brazil/v0/shipments/{$shipmentId}/invoice", [
+    return $this->send("/fba/outbound/brazil/{$this->apiVersion}/shipments/{$shipmentId}/invoice", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -50,7 +56,7 @@ class ShipmentInvoicing extends Client {
 
   public function submitInvoiceAsync($shipmentId, $body = [])
   {
-    return $this->sendAsync("/fba/outbound/brazil/v0/shipments/{$shipmentId}/invoice", [
+    return $this->sendAsync("/fba/outbound/brazil/{$this->apiVersion}/shipments/{$shipmentId}/invoice", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -64,14 +70,14 @@ class ShipmentInvoicing extends Client {
   */
   public function getInvoiceStatus($shipmentId)
   {
-    return $this->send("/fba/outbound/brazil/v0/shipments/{$shipmentId}/invoice/status", [
+    return $this->send("/fba/outbound/brazil/{$this->apiVersion}/shipments/{$shipmentId}/invoice/status", [
       'method' => 'GET',
     ]);
   }
 
   public function getInvoiceStatusAsync($shipmentId)
   {
-    return $this->sendAsync("/fba/outbound/brazil/v0/shipments/{$shipmentId}/invoice/status", [
+    return $this->sendAsync("/fba/outbound/brazil/{$this->apiVersion}/shipments/{$shipmentId}/invoice/status", [
       'method' => 'GET',
     ]);
   }

@@ -14,13 +14,19 @@ use DoubleBreak\Spapi\Client;
 
 class VendorInvoices extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation submitInvoices
   *
   */
   public function submitInvoices($body = [])
   {
-    return $this->send("/vendor/payments/v1/invoices", [
+    return $this->send("/vendor/payments/{$this->apiVersion}/invoices", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -28,7 +34,7 @@ class VendorInvoices extends Client {
 
   public function submitInvoicesAsync($body = [])
   {
-    return $this->sendAsync("/vendor/payments/v1/invoices", [
+    return $this->sendAsync("/vendor/payments/{$this->apiVersion}/invoices", [
       'method' => 'POST',
       'json' => $body
     ]);

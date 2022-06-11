@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class ProductFees extends Client {
 
+  protected $apiVersion = 'v0';
+
+  protected $versions = [
+    'v0' => 'v0',
+  ];
+
   /**
   * Operation getMyFeesEstimateForSKU
   *
@@ -22,7 +28,7 @@ class ProductFees extends Client {
   */
   public function getMyFeesEstimateForSKU($sellerSKU, $body = [])
   {
-    return $this->send("/products/fees/v0/listings/{$sellerSKU}/feesEstimate", [
+    return $this->send("/products/fees/{$this->apiVersion}/listings/{$sellerSKU}/feesEstimate", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -30,7 +36,7 @@ class ProductFees extends Client {
 
   public function getMyFeesEstimateForSKUAsync($sellerSKU, $body = [])
   {
-    return $this->sendAsync("/products/fees/v0/listings/{$sellerSKU}/feesEstimate", [
+    return $this->sendAsync("/products/fees/{$this->apiVersion}/listings/{$sellerSKU}/feesEstimate", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -44,7 +50,7 @@ class ProductFees extends Client {
   */
   public function getMyFeesEstimateForASIN($asin, $body = [])
   {
-    return $this->send("/products/fees/v0/items/{$asin}/feesEstimate", [
+    return $this->send("/products/fees/{$this->apiVersion}/items/{$asin}/feesEstimate", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -52,7 +58,7 @@ class ProductFees extends Client {
 
   public function getMyFeesEstimateForASINAsync($asin, $body = [])
   {
-    return $this->sendAsync("/products/fees/v0/items/{$asin}/feesEstimate", [
+    return $this->sendAsync("/products/fees/{$this->apiVersion}/items/{$asin}/feesEstimate", [
       'method' => 'POST',
       'json' => $body
     ]);

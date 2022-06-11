@@ -16,6 +16,12 @@ use DoubleBreak\Spapi\Client;
 
 class ListingsRestrictions extends Client {
 
+  protected $apiVersion = '2021-08-01';
+
+  protected $versions = [
+    '2021-08-01' => '2021-08-01',
+  ];
+
   /**
   * Operation getListingsRestrictions
   *
@@ -29,7 +35,7 @@ class ListingsRestrictions extends Client {
   */
   public function getListingsRestrictions($queryParams = [])
   {
-    return $this->send("/listings/2021-08-01/restrictions", [
+    return $this->send("/listings/{$this->apiVersion}/restrictions", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -37,7 +43,7 @@ class ListingsRestrictions extends Client {
 
   public function getListingsRestrictionsAsync($queryParams = [])
   {
-    return $this->sendAsync("/listings/2021-08-01/restrictions", [
+    return $this->sendAsync("/listings/{$this->apiVersion}/restrictions", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);

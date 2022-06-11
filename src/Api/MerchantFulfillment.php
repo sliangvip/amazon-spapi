@@ -14,13 +14,19 @@ use DoubleBreak\Spapi\Client;
 
 class MerchantFulfillment extends Client {
 
+  protected $apiVersion = 'v0';
+
+  protected $versions = [
+    'v0' => 'v0',
+  ];
+
   /**
   * Operation getEligibleShipmentServicesOld
   *
   */
   public function getEligibleShipmentServicesOld($body = [])
   {
-    return $this->send("/mfn/v0/eligibleServices", [
+    return $this->send("/mfn/{$this->apiVersion}/eligibleServices", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -28,7 +34,7 @@ class MerchantFulfillment extends Client {
 
   public function getEligibleShipmentServicesOldAsync($body = [])
   {
-    return $this->sendAsync("/mfn/v0/eligibleServices", [
+    return $this->sendAsync("/mfn/{$this->apiVersion}/eligibleServices", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -40,7 +46,7 @@ class MerchantFulfillment extends Client {
   */
   public function getEligibleShipmentServices($body = [])
   {
-    return $this->send("/mfn/v0/eligibleShippingServices", [
+    return $this->send("/mfn/{$this->apiVersion}/eligibleShippingServices", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -48,7 +54,7 @@ class MerchantFulfillment extends Client {
 
   public function getEligibleShipmentServicesAsync($body = [])
   {
-    return $this->sendAsync("/mfn/v0/eligibleShippingServices", [
+    return $this->sendAsync("/mfn/{$this->apiVersion}/eligibleShippingServices", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -62,14 +68,14 @@ class MerchantFulfillment extends Client {
   */
   public function getShipment($shipmentId)
   {
-    return $this->send("/mfn/v0/shipments/{$shipmentId}", [
+    return $this->send("/mfn/{$this->apiVersion}/shipments/{$shipmentId}", [
       'method' => 'GET',
     ]);
   }
 
   public function getShipmentAsync($shipmentId)
   {
-    return $this->sendAsync("/mfn/v0/shipments/{$shipmentId}", [
+    return $this->sendAsync("/mfn/{$this->apiVersion}/shipments/{$shipmentId}", [
       'method' => 'GET',
     ]);
   }
@@ -82,14 +88,14 @@ class MerchantFulfillment extends Client {
   */
   public function cancelShipment($shipmentId)
   {
-    return $this->send("/mfn/v0/shipments/{$shipmentId}", [
+    return $this->send("/mfn/{$this->apiVersion}/shipments/{$shipmentId}", [
       'method' => 'DELETE',
     ]);
   }
 
   public function cancelShipmentAsync($shipmentId)
   {
-    return $this->sendAsync("/mfn/v0/shipments/{$shipmentId}", [
+    return $this->sendAsync("/mfn/{$this->apiVersion}/shipments/{$shipmentId}", [
       'method' => 'DELETE',
     ]);
   }
@@ -102,14 +108,14 @@ class MerchantFulfillment extends Client {
   */
   public function cancelShipmentOld($shipmentId)
   {
-    return $this->send("/mfn/v0/shipments/{$shipmentId}/cancel", [
+    return $this->send("/mfn/{$this->apiVersion}/shipments/{$shipmentId}/cancel", [
       'method' => 'PUT',
     ]);
   }
 
   public function cancelShipmentOldAsync($shipmentId)
   {
-    return $this->sendAsync("/mfn/v0/shipments/{$shipmentId}/cancel", [
+    return $this->sendAsync("/mfn/{$this->apiVersion}/shipments/{$shipmentId}/cancel", [
       'method' => 'PUT',
     ]);
   }
@@ -120,7 +126,7 @@ class MerchantFulfillment extends Client {
   */
   public function createShipment($body = [])
   {
-    return $this->send("/mfn/v0/shipments", [
+    return $this->send("/mfn/{$this->apiVersion}/shipments", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -128,7 +134,7 @@ class MerchantFulfillment extends Client {
 
   public function createShipmentAsync($body = [])
   {
-    return $this->sendAsync("/mfn/v0/shipments", [
+    return $this->sendAsync("/mfn/{$this->apiVersion}/shipments", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -140,7 +146,7 @@ class MerchantFulfillment extends Client {
   */
   public function getAdditionalSellerInputsOld($body = [])
   {
-    return $this->send("/mfn/v0/sellerInputs", [
+    return $this->send("/mfn/{$this->apiVersion}/sellerInputs", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -148,7 +154,7 @@ class MerchantFulfillment extends Client {
 
   public function getAdditionalSellerInputsOldAsync($body = [])
   {
-    return $this->sendAsync("/mfn/v0/sellerInputs", [
+    return $this->sendAsync("/mfn/{$this->apiVersion}/sellerInputs", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -160,7 +166,7 @@ class MerchantFulfillment extends Client {
   */
   public function getAdditionalSellerInputs($body = [])
   {
-    return $this->send("/mfn/v0/additionalSellerInputs", [
+    return $this->send("/mfn/{$this->apiVersion}/additionalSellerInputs", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -168,7 +174,7 @@ class MerchantFulfillment extends Client {
 
   public function getAdditionalSellerInputsAsync($body = [])
   {
-    return $this->sendAsync("/mfn/v0/additionalSellerInputs", [
+    return $this->sendAsync("/mfn/{$this->apiVersion}/additionalSellerInputs", [
       'method' => 'POST',
       'json' => $body
     ]);

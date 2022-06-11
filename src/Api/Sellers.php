@@ -14,20 +14,26 @@ use DoubleBreak\Spapi\Client;
 
 class Sellers extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation getMarketplaceParticipations
   *
   */
   public function getMarketplaceParticipations()
   {
-    return $this->send("/sellers/v1/marketplaceParticipations", [
+    return $this->send("/sellers/{$this->apiVersion}/marketplaceParticipations", [
       'method' => 'GET',
     ]);
   }
 
   public function getMarketplaceParticipationsAsync()
   {
-    return $this->sendAsync("/sellers/v1/marketplaceParticipations", [
+    return $this->sendAsync("/sellers/{$this->apiVersion}/marketplaceParticipations", [
       'method' => 'GET',
     ]);
   }

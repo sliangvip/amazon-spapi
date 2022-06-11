@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class Messaging extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation getMessagingActionsForOrder
   *
@@ -25,7 +31,7 @@ class Messaging extends Client {
   */
   public function getMessagingActionsForOrder($amazonOrderId, $queryParams = [])
   {
-    return $this->send("/messaging/v1/orders/{$amazonOrderId}", [
+    return $this->send("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -33,7 +39,7 @@ class Messaging extends Client {
 
   public function getMessagingActionsForOrderAsync($amazonOrderId, $queryParams = [])
   {
-    return $this->sendAsync("/messaging/v1/orders/{$amazonOrderId}", [
+    return $this->sendAsync("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -50,7 +56,7 @@ class Messaging extends Client {
   */
   public function confirmCustomizationDetails($amazonOrderId, $queryParams = [], $body = [])
   {
-    return $this->send("/messaging/v1/orders/{$amazonOrderId}/messages/confirmCustomizationDetails", [
+    return $this->send("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/confirmCustomizationDetails", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -59,7 +65,7 @@ class Messaging extends Client {
 
   public function confirmCustomizationDetailsAsync($amazonOrderId, $queryParams = [], $body = [])
   {
-    return $this->sendAsync("/messaging/v1/orders/{$amazonOrderId}/messages/confirmCustomizationDetails", [
+    return $this->sendAsync("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/confirmCustomizationDetails", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -77,7 +83,7 @@ class Messaging extends Client {
   */
   public function createConfirmDeliveryDetails($amazonOrderId, $queryParams = [], $body = [])
   {
-    return $this->send("/messaging/v1/orders/{$amazonOrderId}/messages/confirmDeliveryDetails", [
+    return $this->send("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/confirmDeliveryDetails", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -86,7 +92,7 @@ class Messaging extends Client {
 
   public function createConfirmDeliveryDetailsAsync($amazonOrderId, $queryParams = [], $body = [])
   {
-    return $this->sendAsync("/messaging/v1/orders/{$amazonOrderId}/messages/confirmDeliveryDetails", [
+    return $this->sendAsync("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/confirmDeliveryDetails", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -104,7 +110,7 @@ class Messaging extends Client {
   */
   public function createLegalDisclosure($amazonOrderId, $queryParams = [], $body = [])
   {
-    return $this->send("/messaging/v1/orders/{$amazonOrderId}/messages/legalDisclosure", [
+    return $this->send("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/legalDisclosure", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -113,7 +119,7 @@ class Messaging extends Client {
 
   public function createLegalDisclosureAsync($amazonOrderId, $queryParams = [], $body = [])
   {
-    return $this->sendAsync("/messaging/v1/orders/{$amazonOrderId}/messages/legalDisclosure", [
+    return $this->sendAsync("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/legalDisclosure", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -131,7 +137,7 @@ class Messaging extends Client {
   */
   public function createNegativeFeedbackRemoval($amazonOrderId, $queryParams = [])
   {
-    return $this->send("/messaging/v1/orders/{$amazonOrderId}/messages/negativeFeedbackRemoval", [
+    return $this->send("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/negativeFeedbackRemoval", [
       'method' => 'POST',
       'query' => $queryParams,
     ]);
@@ -139,7 +145,7 @@ class Messaging extends Client {
 
   public function createNegativeFeedbackRemovalAsync($amazonOrderId, $queryParams = [])
   {
-    return $this->sendAsync("/messaging/v1/orders/{$amazonOrderId}/messages/negativeFeedbackRemoval", [
+    return $this->sendAsync("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/negativeFeedbackRemoval", [
       'method' => 'POST',
       'query' => $queryParams,
     ]);
@@ -156,7 +162,7 @@ class Messaging extends Client {
   */
   public function createConfirmOrderDetails($amazonOrderId, $queryParams = [], $body = [])
   {
-    return $this->send("/messaging/v1/orders/{$amazonOrderId}/messages/confirmOrderDetails", [
+    return $this->send("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/confirmOrderDetails", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -165,7 +171,7 @@ class Messaging extends Client {
 
   public function createConfirmOrderDetailsAsync($amazonOrderId, $queryParams = [], $body = [])
   {
-    return $this->sendAsync("/messaging/v1/orders/{$amazonOrderId}/messages/confirmOrderDetails", [
+    return $this->sendAsync("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/confirmOrderDetails", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -183,7 +189,7 @@ class Messaging extends Client {
   */
   public function createConfirmServiceDetails($amazonOrderId, $queryParams = [], $body = [])
   {
-    return $this->send("/messaging/v1/orders/{$amazonOrderId}/messages/confirmServiceDetails", [
+    return $this->send("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/confirmServiceDetails", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -192,7 +198,7 @@ class Messaging extends Client {
 
   public function createConfirmServiceDetailsAsync($amazonOrderId, $queryParams = [], $body = [])
   {
-    return $this->sendAsync("/messaging/v1/orders/{$amazonOrderId}/messages/confirmServiceDetails", [
+    return $this->sendAsync("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/confirmServiceDetails", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -210,7 +216,7 @@ class Messaging extends Client {
   */
   public function CreateAmazonMotors($amazonOrderId, $queryParams = [], $body = [])
   {
-    return $this->send("/messaging/v1/orders/{$amazonOrderId}/messages/amazonMotors", [
+    return $this->send("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/amazonMotors", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -219,7 +225,7 @@ class Messaging extends Client {
 
   public function CreateAmazonMotorsAsync($amazonOrderId, $queryParams = [], $body = [])
   {
-    return $this->sendAsync("/messaging/v1/orders/{$amazonOrderId}/messages/amazonMotors", [
+    return $this->sendAsync("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/amazonMotors", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -237,7 +243,7 @@ class Messaging extends Client {
   */
   public function CreateWarranty($amazonOrderId, $queryParams = [], $body = [])
   {
-    return $this->send("/messaging/v1/orders/{$amazonOrderId}/messages/warranty", [
+    return $this->send("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/warranty", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -246,7 +252,7 @@ class Messaging extends Client {
 
   public function CreateWarrantyAsync($amazonOrderId, $queryParams = [], $body = [])
   {
-    return $this->sendAsync("/messaging/v1/orders/{$amazonOrderId}/messages/warranty", [
+    return $this->sendAsync("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/warranty", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -264,7 +270,7 @@ class Messaging extends Client {
   */
   public function GetAttributes($amazonOrderId, $queryParams = [])
   {
-    return $this->send("/messaging/v1/orders/{$amazonOrderId}/attributes", [
+    return $this->send("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/attributes", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -272,7 +278,7 @@ class Messaging extends Client {
 
   public function GetAttributesAsync($amazonOrderId, $queryParams = [])
   {
-    return $this->sendAsync("/messaging/v1/orders/{$amazonOrderId}/attributes", [
+    return $this->sendAsync("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/attributes", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -289,7 +295,7 @@ class Messaging extends Client {
   */
   public function createDigitalAccessKey($amazonOrderId, $queryParams = [], $body = [])
   {
-    return $this->send("/messaging/v1/orders/{$amazonOrderId}/messages/digitalAccessKey", [
+    return $this->send("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/digitalAccessKey", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -298,7 +304,7 @@ class Messaging extends Client {
 
   public function createDigitalAccessKeyAsync($amazonOrderId, $queryParams = [], $body = [])
   {
-    return $this->sendAsync("/messaging/v1/orders/{$amazonOrderId}/messages/digitalAccessKey", [
+    return $this->sendAsync("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/digitalAccessKey", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -316,7 +322,7 @@ class Messaging extends Client {
   */
   public function createUnexpectedProblem($amazonOrderId, $queryParams = [], $body = [])
   {
-    return $this->send("/messaging/v1/orders/{$amazonOrderId}/messages/unexpectedProblem", [
+    return $this->send("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/unexpectedProblem", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -325,7 +331,7 @@ class Messaging extends Client {
 
   public function createUnexpectedProblemAsync($amazonOrderId, $queryParams = [], $body = [])
   {
-    return $this->sendAsync("/messaging/v1/orders/{$amazonOrderId}/messages/unexpectedProblem", [
+    return $this->sendAsync("/messaging/{$this->apiVersion}/orders/{$amazonOrderId}/messages/unexpectedProblem", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body

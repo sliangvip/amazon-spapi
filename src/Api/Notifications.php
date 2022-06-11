@@ -16,6 +16,12 @@ use DoubleBreak\Spapi\Client;
 
 class Notifications extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation getSubscription
   *
@@ -26,14 +32,14 @@ class Notifications extends Client {
   */
   public function getSubscription($notificationType)
   {
-    return $this->send("/notifications/v1/subscriptions/{$notificationType}", [
+    return $this->send("/notifications/{$this->apiVersion}/subscriptions/{$notificationType}", [
       'method' => 'GET',
     ]);
   }
 
   public function getSubscriptionAsync($notificationType)
   {
-    return $this->sendAsync("/notifications/v1/subscriptions/{$notificationType}", [
+    return $this->sendAsync("/notifications/{$this->apiVersion}/subscriptions/{$notificationType}", [
       'method' => 'GET',
     ]);
   }
@@ -48,7 +54,7 @@ class Notifications extends Client {
   */
   public function createSubscription($notificationType, $body = [])
   {
-    return $this->send("/notifications/v1/subscriptions/{$notificationType}", [
+    return $this->send("/notifications/{$this->apiVersion}/subscriptions/{$notificationType}", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -56,7 +62,7 @@ class Notifications extends Client {
 
   public function createSubscriptionAsync($notificationType, $body = [])
   {
-    return $this->sendAsync("/notifications/v1/subscriptions/{$notificationType}", [
+    return $this->sendAsync("/notifications/{$this->apiVersion}/subscriptions/{$notificationType}", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -73,14 +79,14 @@ class Notifications extends Client {
   */
   public function getSubscriptionById($subscriptionId, $notificationType)
   {
-    return $this->send("/notifications/v1/subscriptions/{$notificationType}/{$subscriptionId}", [
+    return $this->send("/notifications/{$this->apiVersion}/subscriptions/{$notificationType}/{$subscriptionId}", [
       'method' => 'GET',
     ]);
   }
 
   public function getSubscriptionByIdAsync($subscriptionId, $notificationType)
   {
-    return $this->sendAsync("/notifications/v1/subscriptions/{$notificationType}/{$subscriptionId}", [
+    return $this->sendAsync("/notifications/{$this->apiVersion}/subscriptions/{$notificationType}/{$subscriptionId}", [
       'method' => 'GET',
     ]);
   }
@@ -96,14 +102,14 @@ class Notifications extends Client {
   */
   public function deleteSubscriptionById($subscriptionId, $notificationType)
   {
-    return $this->send("/notifications/v1/subscriptions/{$notificationType}/{$subscriptionId}", [
+    return $this->send("/notifications/{$this->apiVersion}/subscriptions/{$notificationType}/{$subscriptionId}", [
       'method' => 'DELETE',
     ]);
   }
 
   public function deleteSubscriptionByIdAsync($subscriptionId, $notificationType)
   {
-    return $this->sendAsync("/notifications/v1/subscriptions/{$notificationType}/{$subscriptionId}", [
+    return $this->sendAsync("/notifications/{$this->apiVersion}/subscriptions/{$notificationType}/{$subscriptionId}", [
       'method' => 'DELETE',
     ]);
   }
@@ -114,14 +120,14 @@ class Notifications extends Client {
   */
   public function getDestinations()
   {
-    return $this->send("/notifications/v1/destinations", [
+    return $this->send("/notifications/{$this->apiVersion}/destinations", [
       'method' => 'GET',
     ]);
   }
 
   public function getDestinationsAsync()
   {
-    return $this->sendAsync("/notifications/v1/destinations", [
+    return $this->sendAsync("/notifications/{$this->apiVersion}/destinations", [
       'method' => 'GET',
     ]);
   }
@@ -132,7 +138,7 @@ class Notifications extends Client {
   */
   public function createDestination($body = [])
   {
-    return $this->send("/notifications/v1/destinations", [
+    return $this->send("/notifications/{$this->apiVersion}/destinations", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -140,7 +146,7 @@ class Notifications extends Client {
 
   public function createDestinationAsync($body = [])
   {
-    return $this->sendAsync("/notifications/v1/destinations", [
+    return $this->sendAsync("/notifications/{$this->apiVersion}/destinations", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -154,14 +160,14 @@ class Notifications extends Client {
   */
   public function getDestination($destinationId)
   {
-    return $this->send("/notifications/v1/destinations/{$destinationId}", [
+    return $this->send("/notifications/{$this->apiVersion}/destinations/{$destinationId}", [
       'method' => 'GET',
     ]);
   }
 
   public function getDestinationAsync($destinationId)
   {
-    return $this->sendAsync("/notifications/v1/destinations/{$destinationId}", [
+    return $this->sendAsync("/notifications/{$this->apiVersion}/destinations/{$destinationId}", [
       'method' => 'GET',
     ]);
   }
@@ -174,14 +180,14 @@ class Notifications extends Client {
   */
   public function deleteDestination($destinationId)
   {
-    return $this->send("/notifications/v1/destinations/{$destinationId}", [
+    return $this->send("/notifications/{$this->apiVersion}/destinations/{$destinationId}", [
       'method' => 'DELETE',
     ]);
   }
 
   public function deleteDestinationAsync($destinationId)
   {
-    return $this->sendAsync("/notifications/v1/destinations/{$destinationId}", [
+    return $this->sendAsync("/notifications/{$this->apiVersion}/destinations/{$destinationId}", [
       'method' => 'DELETE',
     ]);
   }

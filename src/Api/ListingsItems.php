@@ -16,6 +16,13 @@ use DoubleBreak\Spapi\Client;
 
 class ListingsItems extends Client {
 
+  protected $apiVersion = '2021-08-01';
+
+  protected $versions = [
+    '2021-08-01' => '2021-08-01',
+    '2020-09-01' => '2020-09-01',
+  ];
+
   /**
   * Operation deleteListingsItem
   *
@@ -29,7 +36,7 @@ class ListingsItems extends Client {
   */
   public function deleteListingsItem($sellerId, $sku, $queryParams = [])
   {
-    return $this->send("/listings/2021-08-01/items/{$sellerId}/{$sku}", [
+    return $this->send("/listings/{$this->apiVersion}/items/{$sellerId}/{$sku}", [
       'method' => 'DELETE',
       'query' => $queryParams,
     ]);
@@ -37,7 +44,7 @@ class ListingsItems extends Client {
 
   public function deleteListingsItemAsync($sellerId, $sku, $queryParams = [])
   {
-    return $this->sendAsync("/listings/2021-08-01/items/{$sellerId}/{$sku}", [
+    return $this->sendAsync("/listings/{$this->apiVersion}/items/{$sellerId}/{$sku}", [
       'method' => 'DELETE',
       'query' => $queryParams,
     ]);
@@ -57,7 +64,7 @@ class ListingsItems extends Client {
   */
   public function getListingsItem($sellerId, $sku, $queryParams = [])
   {
-    return $this->send("/listings/2021-08-01/items/{$sellerId}/{$sku}", [
+    return $this->send("/listings/{$this->apiVersion}/items/{$sellerId}/{$sku}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -65,7 +72,7 @@ class ListingsItems extends Client {
 
   public function getListingsItemAsync($sellerId, $sku, $queryParams = [])
   {
-    return $this->sendAsync("/listings/2021-08-01/items/{$sellerId}/{$sku}", [
+    return $this->sendAsync("/listings/{$this->apiVersion}/items/{$sellerId}/{$sku}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -84,7 +91,7 @@ class ListingsItems extends Client {
   */
   public function patchListingsItem($sellerId, $sku, $queryParams = [], $body = [])
   {
-    return $this->send("/listings/2021-08-01/items/{$sellerId}/{$sku}", [
+    return $this->send("/listings/{$this->apiVersion}/items/{$sellerId}/{$sku}", [
       'method' => 'PATCH',
       'query' => $queryParams,
       'json' => $body
@@ -93,7 +100,7 @@ class ListingsItems extends Client {
 
   public function patchListingsItemAsync($sellerId, $sku, $queryParams = [], $body = [])
   {
-    return $this->sendAsync("/listings/2021-08-01/items/{$sellerId}/{$sku}", [
+    return $this->sendAsync("/listings/{$this->apiVersion}/items/{$sellerId}/{$sku}", [
       'method' => 'PATCH',
       'query' => $queryParams,
       'json' => $body
@@ -113,7 +120,7 @@ class ListingsItems extends Client {
   */
   public function putListingsItem($sellerId, $sku, $queryParams = [], $body = [])
   {
-    return $this->send("/listings/2021-08-01/items/{$sellerId}/{$sku}", [
+    return $this->send("/listings/{$this->apiVersion}/items/{$sellerId}/{$sku}", [
       'method' => 'PUT',
       'query' => $queryParams,
       'json' => $body
@@ -122,7 +129,7 @@ class ListingsItems extends Client {
 
   public function putListingsItemAsync($sellerId, $sku, $queryParams = [], $body = [])
   {
-    return $this->sendAsync("/listings/2021-08-01/items/{$sellerId}/{$sku}", [
+    return $this->sendAsync("/listings/{$this->apiVersion}/items/{$sellerId}/{$sku}", [
       'method' => 'PUT',
       'query' => $queryParams,
       'json' => $body

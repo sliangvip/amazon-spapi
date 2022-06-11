@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class VendorTransactionStatus extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation getTransaction
   *
@@ -22,14 +28,14 @@ class VendorTransactionStatus extends Client {
   */
   public function getTransaction($transactionId)
   {
-    return $this->send("/vendor/transactions/v1/transactions/{$transactionId}", [
+    return $this->send("/vendor/transactions/{$this->apiVersion}/transactions/{$transactionId}", [
       'method' => 'GET',
     ]);
   }
 
   public function getTransactionAsync($transactionId)
   {
-    return $this->sendAsync("/vendor/transactions/v1/transactions/{$transactionId}", [
+    return $this->sendAsync("/vendor/transactions/{$this->apiVersion}/transactions/{$transactionId}", [
       'method' => 'GET',
     ]);
   }

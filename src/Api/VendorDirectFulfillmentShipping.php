@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class VendorDirectFulfillmentShipping extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation getShippingLabels
   *
@@ -28,7 +34,7 @@ class VendorDirectFulfillmentShipping extends Client {
   */
   public function getShippingLabels($queryParams = [])
   {
-    return $this->send("/vendor/directFulfillment/shipping/v1/shippingLabels", [
+    return $this->send("/vendor/directFulfillment/shipping/{$this->apiVersion}/shippingLabels", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -36,7 +42,7 @@ class VendorDirectFulfillmentShipping extends Client {
 
   public function getShippingLabelsAsync($queryParams = [])
   {
-    return $this->sendAsync("/vendor/directFulfillment/shipping/v1/shippingLabels", [
+    return $this->sendAsync("/vendor/directFulfillment/shipping/{$this->apiVersion}/shippingLabels", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -48,7 +54,7 @@ class VendorDirectFulfillmentShipping extends Client {
   */
   public function submitShippingLabelRequest($body = [])
   {
-    return $this->send("/vendor/directFulfillment/shipping/v1/shippingLabels", [
+    return $this->send("/vendor/directFulfillment/shipping/{$this->apiVersion}/shippingLabels", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -56,7 +62,7 @@ class VendorDirectFulfillmentShipping extends Client {
 
   public function submitShippingLabelRequestAsync($body = [])
   {
-    return $this->sendAsync("/vendor/directFulfillment/shipping/v1/shippingLabels", [
+    return $this->sendAsync("/vendor/directFulfillment/shipping/{$this->apiVersion}/shippingLabels", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -70,14 +76,14 @@ class VendorDirectFulfillmentShipping extends Client {
   */
   public function getShippingLabel($purchaseOrderNumber)
   {
-    return $this->send("/vendor/directFulfillment/shipping/v1/shippingLabels/{$purchaseOrderNumber}", [
+    return $this->send("/vendor/directFulfillment/shipping/{$this->apiVersion}/shippingLabels/{$purchaseOrderNumber}", [
       'method' => 'GET',
     ]);
   }
 
   public function getShippingLabelAsync($purchaseOrderNumber)
   {
-    return $this->sendAsync("/vendor/directFulfillment/shipping/v1/shippingLabels/{$purchaseOrderNumber}", [
+    return $this->sendAsync("/vendor/directFulfillment/shipping/{$this->apiVersion}/shippingLabels/{$purchaseOrderNumber}", [
       'method' => 'GET',
     ]);
   }
@@ -88,7 +94,7 @@ class VendorDirectFulfillmentShipping extends Client {
   */
   public function submitShipmentConfirmations($body = [])
   {
-    return $this->send("/vendor/directFulfillment/shipping/v1/shipmentConfirmations", [
+    return $this->send("/vendor/directFulfillment/shipping/{$this->apiVersion}/shipmentConfirmations", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -96,7 +102,7 @@ class VendorDirectFulfillmentShipping extends Client {
 
   public function submitShipmentConfirmationsAsync($body = [])
   {
-    return $this->sendAsync("/vendor/directFulfillment/shipping/v1/shipmentConfirmations", [
+    return $this->sendAsync("/vendor/directFulfillment/shipping/{$this->apiVersion}/shipmentConfirmations", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -108,7 +114,7 @@ class VendorDirectFulfillmentShipping extends Client {
   */
   public function submitShipmentStatusUpdates($body = [])
   {
-    return $this->send("/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates", [
+    return $this->send("/vendor/directFulfillment/shipping/{$this->apiVersion}/shipmentStatusUpdates", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -116,7 +122,7 @@ class VendorDirectFulfillmentShipping extends Client {
 
   public function submitShipmentStatusUpdatesAsync($body = [])
   {
-    return $this->sendAsync("/vendor/directFulfillment/shipping/v1/shipmentStatusUpdates", [
+    return $this->sendAsync("/vendor/directFulfillment/shipping/{$this->apiVersion}/shipmentStatusUpdates", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -136,7 +142,7 @@ class VendorDirectFulfillmentShipping extends Client {
   */
   public function getCustomerInvoices($queryParams = [])
   {
-    return $this->send("/vendor/directFulfillment/shipping/v1/customerInvoices", [
+    return $this->send("/vendor/directFulfillment/shipping/{$this->apiVersion}/customerInvoices", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -144,7 +150,7 @@ class VendorDirectFulfillmentShipping extends Client {
 
   public function getCustomerInvoicesAsync($queryParams = [])
   {
-    return $this->sendAsync("/vendor/directFulfillment/shipping/v1/customerInvoices", [
+    return $this->sendAsync("/vendor/directFulfillment/shipping/{$this->apiVersion}/customerInvoices", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -158,14 +164,14 @@ class VendorDirectFulfillmentShipping extends Client {
   */
   public function getCustomerInvoice($purchaseOrderNumber)
   {
-    return $this->send("/vendor/directFulfillment/shipping/v1/customerInvoices/{$purchaseOrderNumber}", [
+    return $this->send("/vendor/directFulfillment/shipping/{$this->apiVersion}/customerInvoices/{$purchaseOrderNumber}", [
       'method' => 'GET',
     ]);
   }
 
   public function getCustomerInvoiceAsync($purchaseOrderNumber)
   {
-    return $this->sendAsync("/vendor/directFulfillment/shipping/v1/customerInvoices/{$purchaseOrderNumber}", [
+    return $this->sendAsync("/vendor/directFulfillment/shipping/{$this->apiVersion}/customerInvoices/{$purchaseOrderNumber}", [
       'method' => 'GET',
     ]);
   }
@@ -184,7 +190,7 @@ class VendorDirectFulfillmentShipping extends Client {
   */
   public function getPackingSlips($queryParams = [])
   {
-    return $this->send("/vendor/directFulfillment/shipping/v1/packingSlips", [
+    return $this->send("/vendor/directFulfillment/shipping/{$this->apiVersion}/packingSlips", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -192,7 +198,7 @@ class VendorDirectFulfillmentShipping extends Client {
 
   public function getPackingSlipsAsync($queryParams = [])
   {
-    return $this->sendAsync("/vendor/directFulfillment/shipping/v1/packingSlips", [
+    return $this->sendAsync("/vendor/directFulfillment/shipping/{$this->apiVersion}/packingSlips", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -206,14 +212,14 @@ class VendorDirectFulfillmentShipping extends Client {
   */
   public function getPackingSlip($purchaseOrderNumber)
   {
-    return $this->send("/vendor/directFulfillment/shipping/v1/packingSlips/{$purchaseOrderNumber}", [
+    return $this->send("/vendor/directFulfillment/shipping/{$this->apiVersion}/packingSlips/{$purchaseOrderNumber}", [
       'method' => 'GET',
     ]);
   }
 
   public function getPackingSlipAsync($purchaseOrderNumber)
   {
-    return $this->sendAsync("/vendor/directFulfillment/shipping/v1/packingSlips/{$purchaseOrderNumber}", [
+    return $this->sendAsync("/vendor/directFulfillment/shipping/{$this->apiVersion}/packingSlips/{$purchaseOrderNumber}", [
       'method' => 'GET',
     ]);
   }

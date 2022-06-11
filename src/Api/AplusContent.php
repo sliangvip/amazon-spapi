@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class AplusContent extends Client {
 
+  protected $apiVersion = '2020-11-01';
+
+  protected $versions = [
+    '2020-11-01' => '2020-11-01',
+  ];
+
   /**
   * Operation searchContentDocuments
   *
@@ -24,7 +30,7 @@ class AplusContent extends Client {
   */
   public function searchContentDocuments($queryParams = [])
   {
-    return $this->send("/aplus/2020-11-01/contentDocuments", [
+    return $this->send("/aplus/{$this->apiVersion}/contentDocuments", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -32,7 +38,7 @@ class AplusContent extends Client {
 
   public function searchContentDocumentsAsync($queryParams = [])
   {
-    return $this->sendAsync("/aplus/2020-11-01/contentDocuments", [
+    return $this->sendAsync("/aplus/{$this->apiVersion}/contentDocuments", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -47,7 +53,7 @@ class AplusContent extends Client {
   */
   public function createContentDocument($queryParams = [], $body = [])
   {
-    return $this->send("/aplus/2020-11-01/contentDocuments", [
+    return $this->send("/aplus/{$this->apiVersion}/contentDocuments", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -56,7 +62,7 @@ class AplusContent extends Client {
 
   public function createContentDocumentAsync($queryParams = [], $body = [])
   {
-    return $this->sendAsync("/aplus/2020-11-01/contentDocuments", [
+    return $this->sendAsync("/aplus/{$this->apiVersion}/contentDocuments", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -75,7 +81,7 @@ class AplusContent extends Client {
   */
   public function getContentDocument($contentReferenceKey, $queryParams = [])
   {
-    return $this->send("/aplus/2020-11-01/contentDocuments/{$contentReferenceKey}", [
+    return $this->send("/aplus/{$this->apiVersion}/contentDocuments/{$contentReferenceKey}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -83,7 +89,7 @@ class AplusContent extends Client {
 
   public function getContentDocumentAsync($contentReferenceKey, $queryParams = [])
   {
-    return $this->sendAsync("/aplus/2020-11-01/contentDocuments/{$contentReferenceKey}", [
+    return $this->sendAsync("/aplus/{$this->apiVersion}/contentDocuments/{$contentReferenceKey}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -100,7 +106,7 @@ class AplusContent extends Client {
   */
   public function updateContentDocument($contentReferenceKey, $queryParams = [], $body = [])
   {
-    return $this->send("/aplus/2020-11-01/contentDocuments/{$contentReferenceKey}", [
+    return $this->send("/aplus/{$this->apiVersion}/contentDocuments/{$contentReferenceKey}", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -109,7 +115,7 @@ class AplusContent extends Client {
 
   public function updateContentDocumentAsync($contentReferenceKey, $queryParams = [], $body = [])
   {
-    return $this->sendAsync("/aplus/2020-11-01/contentDocuments/{$contentReferenceKey}", [
+    return $this->sendAsync("/aplus/{$this->apiVersion}/contentDocuments/{$contentReferenceKey}", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -130,7 +136,7 @@ class AplusContent extends Client {
   */
   public function listContentDocumentAsinRelations($contentReferenceKey, $queryParams = [])
   {
-    return $this->send("/aplus/2020-11-01/contentDocuments/{$contentReferenceKey}/asins", [
+    return $this->send("/aplus/{$this->apiVersion}/contentDocuments/{$contentReferenceKey}/asins", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -138,7 +144,7 @@ class AplusContent extends Client {
 
   public function listContentDocumentAsinRelationsAsync($contentReferenceKey, $queryParams = [])
   {
-    return $this->sendAsync("/aplus/2020-11-01/contentDocuments/{$contentReferenceKey}/asins", [
+    return $this->sendAsync("/aplus/{$this->apiVersion}/contentDocuments/{$contentReferenceKey}/asins", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -155,7 +161,7 @@ class AplusContent extends Client {
   */
   public function postContentDocumentAsinRelations($contentReferenceKey, $queryParams = [], $body = [])
   {
-    return $this->send("/aplus/2020-11-01/contentDocuments/{$contentReferenceKey}/asins", [
+    return $this->send("/aplus/{$this->apiVersion}/contentDocuments/{$contentReferenceKey}/asins", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -164,7 +170,7 @@ class AplusContent extends Client {
 
   public function postContentDocumentAsinRelationsAsync($contentReferenceKey, $queryParams = [], $body = [])
   {
-    return $this->sendAsync("/aplus/2020-11-01/contentDocuments/{$contentReferenceKey}/asins", [
+    return $this->sendAsync("/aplus/{$this->apiVersion}/contentDocuments/{$contentReferenceKey}/asins", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -181,7 +187,7 @@ class AplusContent extends Client {
   */
   public function validateContentDocumentAsinRelations($queryParams = [], $body = [])
   {
-    return $this->send("/aplus/2020-11-01/contentAsinValidations", [
+    return $this->send("/aplus/{$this->apiVersion}/contentAsinValidations", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -190,7 +196,7 @@ class AplusContent extends Client {
 
   public function validateContentDocumentAsinRelationsAsync($queryParams = [], $body = [])
   {
-    return $this->sendAsync("/aplus/2020-11-01/contentAsinValidations", [
+    return $this->sendAsync("/aplus/{$this->apiVersion}/contentAsinValidations", [
       'method' => 'POST',
       'query' => $queryParams,
       'json' => $body
@@ -208,7 +214,7 @@ class AplusContent extends Client {
   */
   public function searchContentPublishRecords($queryParams = [])
   {
-    return $this->send("/aplus/2020-11-01/contentPublishRecords", [
+    return $this->send("/aplus/{$this->apiVersion}/contentPublishRecords", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -216,7 +222,7 @@ class AplusContent extends Client {
 
   public function searchContentPublishRecordsAsync($queryParams = [])
   {
-    return $this->sendAsync("/aplus/2020-11-01/contentPublishRecords", [
+    return $this->sendAsync("/aplus/{$this->apiVersion}/contentPublishRecords", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -233,7 +239,7 @@ class AplusContent extends Client {
   */
   public function postContentDocumentApprovalSubmission($contentReferenceKey, $queryParams = [])
   {
-    return $this->send("/aplus/2020-11-01/contentDocuments/{$contentReferenceKey}/approvalSubmissions", [
+    return $this->send("/aplus/{$this->apiVersion}/contentDocuments/{$contentReferenceKey}/approvalSubmissions", [
       'method' => 'POST',
       'query' => $queryParams,
     ]);
@@ -241,7 +247,7 @@ class AplusContent extends Client {
 
   public function postContentDocumentApprovalSubmissionAsync($contentReferenceKey, $queryParams = [])
   {
-    return $this->sendAsync("/aplus/2020-11-01/contentDocuments/{$contentReferenceKey}/approvalSubmissions", [
+    return $this->sendAsync("/aplus/{$this->apiVersion}/contentDocuments/{$contentReferenceKey}/approvalSubmissions", [
       'method' => 'POST',
       'query' => $queryParams,
     ]);
@@ -258,7 +264,7 @@ class AplusContent extends Client {
   */
   public function postContentDocumentSuspendSubmission($contentReferenceKey, $queryParams = [])
   {
-    return $this->send("/aplus/2020-11-01/contentDocuments/{$contentReferenceKey}/suspendSubmissions", [
+    return $this->send("/aplus/{$this->apiVersion}/contentDocuments/{$contentReferenceKey}/suspendSubmissions", [
       'method' => 'POST',
       'query' => $queryParams,
     ]);
@@ -266,7 +272,7 @@ class AplusContent extends Client {
 
   public function postContentDocumentSuspendSubmissionAsync($contentReferenceKey, $queryParams = [])
   {
-    return $this->sendAsync("/aplus/2020-11-01/contentDocuments/{$contentReferenceKey}/suspendSubmissions", [
+    return $this->sendAsync("/aplus/{$this->apiVersion}/contentDocuments/{$contentReferenceKey}/suspendSubmissions", [
       'method' => 'POST',
       'query' => $queryParams,
     ]);

@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class VendorOrders extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation getPurchaseOrders
   *
@@ -34,7 +40,7 @@ class VendorOrders extends Client {
   */
   public function getPurchaseOrders($queryParams = [])
   {
-    return $this->send("/vendor/orders/v1/purchaseOrders", [
+    return $this->send("/vendor/orders/{$this->apiVersion}/purchaseOrders", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -42,7 +48,7 @@ class VendorOrders extends Client {
 
   public function getPurchaseOrdersAsync($queryParams = [])
   {
-    return $this->sendAsync("/vendor/orders/v1/purchaseOrders", [
+    return $this->sendAsync("/vendor/orders/{$this->apiVersion}/purchaseOrders", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -56,14 +62,14 @@ class VendorOrders extends Client {
   */
   public function getPurchaseOrder($purchaseOrderNumber)
   {
-    return $this->send("/vendor/orders/v1/purchaseOrders/{$purchaseOrderNumber}", [
+    return $this->send("/vendor/orders/{$this->apiVersion}/purchaseOrders/{$purchaseOrderNumber}", [
       'method' => 'GET',
     ]);
   }
 
   public function getPurchaseOrderAsync($purchaseOrderNumber)
   {
-    return $this->sendAsync("/vendor/orders/v1/purchaseOrders/{$purchaseOrderNumber}", [
+    return $this->sendAsync("/vendor/orders/{$this->apiVersion}/purchaseOrders/{$purchaseOrderNumber}", [
       'method' => 'GET',
     ]);
   }
@@ -74,7 +80,7 @@ class VendorOrders extends Client {
   */
   public function submitAcknowledgement($body = [])
   {
-    return $this->send("/vendor/orders/v1/acknowledgements", [
+    return $this->send("/vendor/orders/{$this->apiVersion}/acknowledgements", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -82,7 +88,7 @@ class VendorOrders extends Client {
 
   public function submitAcknowledgementAsync($body = [])
   {
-    return $this->sendAsync("/vendor/orders/v1/acknowledgements", [
+    return $this->sendAsync("/vendor/orders/{$this->apiVersion}/acknowledgements", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -109,7 +115,7 @@ class VendorOrders extends Client {
   */
   public function getPurchaseOrdersStatus($queryParams = [])
   {
-    return $this->send("/vendor/orders/v1/purchaseOrdersStatus", [
+    return $this->send("/vendor/orders/{$this->apiVersion}/purchaseOrdersStatus", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -117,7 +123,7 @@ class VendorOrders extends Client {
 
   public function getPurchaseOrdersStatusAsync($queryParams = [])
   {
-    return $this->sendAsync("/vendor/orders/v1/purchaseOrdersStatus", [
+    return $this->sendAsync("/vendor/orders/{$this->apiVersion}/purchaseOrdersStatus", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);

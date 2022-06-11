@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class Finances extends Client {
 
+  protected $apiVersion = 'v0';
+
+  protected $versions = [
+    'v0' => 'v0',
+  ];
+
   /**
   * Operation listFinancialEventGroups
   *
@@ -26,7 +32,7 @@ class Finances extends Client {
   */
   public function listFinancialEventGroups($queryParams = [])
   {
-    return $this->send("/finances/v0/financialEventGroups", [
+    return $this->send("/finances/{$this->apiVersion}/financialEventGroups", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -34,7 +40,7 @@ class Finances extends Client {
 
   public function listFinancialEventGroupsAsync($queryParams = [])
   {
-    return $this->sendAsync("/finances/v0/financialEventGroups", [
+    return $this->sendAsync("/finances/{$this->apiVersion}/financialEventGroups", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -52,7 +58,7 @@ class Finances extends Client {
   */
   public function listFinancialEventsByGroupId($eventGroupId, $queryParams = [])
   {
-    return $this->send("/finances/v0/financialEventGroups/{$eventGroupId}/financialEvents", [
+    return $this->send("/finances/{$this->apiVersion}/financialEventGroups/{$eventGroupId}/financialEvents", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -60,7 +66,7 @@ class Finances extends Client {
 
   public function listFinancialEventsByGroupIdAsync($eventGroupId, $queryParams = [])
   {
-    return $this->sendAsync("/finances/v0/financialEventGroups/{$eventGroupId}/financialEvents", [
+    return $this->sendAsync("/finances/{$this->apiVersion}/financialEventGroups/{$eventGroupId}/financialEvents", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -78,7 +84,7 @@ class Finances extends Client {
   */
   public function listFinancialEventsByOrderId($orderId, $queryParams = [])
   {
-    return $this->send("/finances/v0/orders/{$orderId}/financialEvents", [
+    return $this->send("/finances/{$this->apiVersion}/orders/{$orderId}/financialEvents", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -86,7 +92,7 @@ class Finances extends Client {
 
   public function listFinancialEventsByOrderIdAsync($orderId, $queryParams = [])
   {
-    return $this->sendAsync("/finances/v0/orders/{$orderId}/financialEvents", [
+    return $this->sendAsync("/finances/{$this->apiVersion}/orders/{$orderId}/financialEvents", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -104,7 +110,7 @@ class Finances extends Client {
   */
   public function listFinancialEvents($queryParams = [])
   {
-    return $this->send("/finances/v0/financialEvents", [
+    return $this->send("/finances/{$this->apiVersion}/financialEvents", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -112,7 +118,7 @@ class Finances extends Client {
 
   public function listFinancialEventsAsync($queryParams = [])
   {
-    return $this->sendAsync("/finances/v0/financialEvents", [
+    return $this->sendAsync("/finances/{$this->apiVersion}/financialEvents", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);

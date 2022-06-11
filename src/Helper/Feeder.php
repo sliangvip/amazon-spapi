@@ -100,31 +100,43 @@ class Feeder
 
         $feedDownloadUrl = $payload['url'];
 
+        $response = (new \GuzzleHttp\Client())->get($feedDownloadUrl, [
+            'verify' => false,
+        ]);
+        $content_type = $response->getHeader('content-type');
+        list($content_type, $charset) = $this->parseContentType($content_type);
+        $file_content = $response->getBody()->getContents();
         if (!is_null($key)) {
-            $feed_processing_report_content = ASECryptoStream::decrypt(file_get_contents($feedDownloadUrl), $key, $initializationVector);
+            $feed_processing_report_content = ASECryptoStream::decrypt($file_content, $key, $initializationVector);
         } else {
-            $feed_processing_report_content = file_get_contents($feedDownloadUrl);
+            $feed_processing_report_content = $file_content;
         }
 
         if (isset($payload['compressionAlgorithm']) && $payload['compressionAlgorithm'] == 'GZIP') {
             $feed_processing_report_content = gzdecode($feed_processing_report_content);
         }
-
-        // check if report content is json encoded or not
-        if ($this->isJson($feed_processing_report_content) == true) {
-            $json = $feed_processing_report_content;
-        } else {
-            $feed_processing_report_content = preg_replace('/\s+/S', " ", $feed_processing_report_content);
-            $xml = simplexml_load_string($feed_processing_report_content);
-            $json = json_encode($xml);
-        }
-
-        return json_decode($json, TRUE);
+        return [
+            'content_type' => $content_type,
+            'charset' => $charset,
+            'content' => $feed_processing_report_content,
+        ];
     }
 
-    public function isJson($string)
+    public function parseContentType($type)
     {
-        json_decode($string);
-        return json_last_error() === JSON_ERROR_NONE;
+        if (count($type) <= 0) {
+            return [
+                'content_type' => null,
+                'charset' => null,
+            ];
+        }
+        $type = explode(';', $type[0], 2);
+        $content_type = $type[0];
+        $charset = $type[1] ?? null;
+        $charset = trim(str_replace('charset=', '', $charset));
+        return [
+            'content_type' => $content_type,
+            'charset' => $charset,
+        ];
     }
 }

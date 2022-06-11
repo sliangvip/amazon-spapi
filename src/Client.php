@@ -17,6 +17,10 @@ class Client
    */
   protected $httpClient = null;
 
+  protected $apiVersion = null;
+
+  protected $versions = [];
+
   public function __construct(array $credentials = [], array $config = [])
   {
     $this->credentials = $credentials;
@@ -25,6 +29,21 @@ class Client
     $this->httpClient = $this->createHttpClient([
       'base_uri' => 'https://' . $this->config['host']
     ]);
+  }
+
+  public function setApiVersion($version)
+  {
+    $this->apiVersion = $version;
+  }
+
+  public function getApiVersion()
+  {
+    return $this->apiVersion;
+  }
+
+  public function getAvailableVersions()
+  {
+    return $this->versions;
   }
 
   public function setCredentials($credentials)

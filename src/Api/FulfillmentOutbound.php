@@ -14,13 +14,19 @@ use DoubleBreak\Spapi\Client;
 
 class FulfillmentOutbound extends Client {
 
+  protected $apiVersion = '2020-07-01';
+
+  protected $versions = [
+    '2020-07-01' => '2020-07-01',
+  ];
+
   /**
   * Operation getFulfillmentPreview
   *
   */
   public function getFulfillmentPreview($body = [])
   {
-    return $this->send("/fba/outbound/2020-07-01/fulfillmentOrders/preview", [
+    return $this->send("/fba/outbound/{$this->apiVersion}/fulfillmentOrders/preview", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -28,7 +34,7 @@ class FulfillmentOutbound extends Client {
 
   public function getFulfillmentPreviewAsync($body = [])
   {
-    return $this->sendAsync("/fba/outbound/2020-07-01/fulfillmentOrders/preview", [
+    return $this->sendAsync("/fba/outbound/{$this->apiVersion}/fulfillmentOrders/preview", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -44,7 +50,7 @@ class FulfillmentOutbound extends Client {
   */
   public function listAllFulfillmentOrders($queryParams = [])
   {
-    return $this->send("/fba/outbound/2020-07-01/fulfillmentOrders", [
+    return $this->send("/fba/outbound/{$this->apiVersion}/fulfillmentOrders", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -52,7 +58,7 @@ class FulfillmentOutbound extends Client {
 
   public function listAllFulfillmentOrdersAsync($queryParams = [])
   {
-    return $this->sendAsync("/fba/outbound/2020-07-01/fulfillmentOrders", [
+    return $this->sendAsync("/fba/outbound/{$this->apiVersion}/fulfillmentOrders", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -64,7 +70,7 @@ class FulfillmentOutbound extends Client {
   */
   public function createFulfillmentOrder($body = [])
   {
-    return $this->send("/fba/outbound/2020-07-01/fulfillmentOrders", [
+    return $this->send("/fba/outbound/{$this->apiVersion}/fulfillmentOrders", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -72,7 +78,7 @@ class FulfillmentOutbound extends Client {
 
   public function createFulfillmentOrderAsync($body = [])
   {
-    return $this->sendAsync("/fba/outbound/2020-07-01/fulfillmentOrders", [
+    return $this->sendAsync("/fba/outbound/{$this->apiVersion}/fulfillmentOrders", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -87,7 +93,7 @@ class FulfillmentOutbound extends Client {
   */
   public function getPackageTrackingDetails($queryParams = [])
   {
-    return $this->send("/fba/outbound/2020-07-01/tracking", [
+    return $this->send("/fba/outbound/{$this->apiVersion}/tracking", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -95,7 +101,7 @@ class FulfillmentOutbound extends Client {
 
   public function getPackageTrackingDetailsAsync($queryParams = [])
   {
-    return $this->sendAsync("/fba/outbound/2020-07-01/tracking", [
+    return $this->sendAsync("/fba/outbound/{$this->apiVersion}/tracking", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -113,7 +119,7 @@ class FulfillmentOutbound extends Client {
   */
   public function listReturnReasonCodes($queryParams = [])
   {
-    return $this->send("/fba/outbound/2020-07-01/returnReasonCodes", [
+    return $this->send("/fba/outbound/{$this->apiVersion}/returnReasonCodes", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -121,7 +127,7 @@ class FulfillmentOutbound extends Client {
 
   public function listReturnReasonCodesAsync($queryParams = [])
   {
-    return $this->sendAsync("/fba/outbound/2020-07-01/returnReasonCodes", [
+    return $this->sendAsync("/fba/outbound/{$this->apiVersion}/returnReasonCodes", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -135,7 +141,7 @@ class FulfillmentOutbound extends Client {
   */
   public function createFulfillmentReturn($sellerFulfillmentOrderId, $body = [])
   {
-    return $this->send("/fba/outbound/2020-07-01/fulfillmentOrders/{$sellerFulfillmentOrderId}/return", [
+    return $this->send("/fba/outbound/{$this->apiVersion}/fulfillmentOrders/{$sellerFulfillmentOrderId}/return", [
       'method' => 'PUT',
       'json' => $body
     ]);
@@ -143,7 +149,7 @@ class FulfillmentOutbound extends Client {
 
   public function createFulfillmentReturnAsync($sellerFulfillmentOrderId, $body = [])
   {
-    return $this->sendAsync("/fba/outbound/2020-07-01/fulfillmentOrders/{$sellerFulfillmentOrderId}/return", [
+    return $this->sendAsync("/fba/outbound/{$this->apiVersion}/fulfillmentOrders/{$sellerFulfillmentOrderId}/return", [
       'method' => 'PUT',
       'json' => $body
     ]);
@@ -157,14 +163,14 @@ class FulfillmentOutbound extends Client {
   */
   public function getFulfillmentOrder($sellerFulfillmentOrderId)
   {
-    return $this->send("/fba/outbound/2020-07-01/fulfillmentOrders/{$sellerFulfillmentOrderId}", [
+    return $this->send("/fba/outbound/{$this->apiVersion}/fulfillmentOrders/{$sellerFulfillmentOrderId}", [
       'method' => 'GET',
     ]);
   }
 
   public function getFulfillmentOrderAsync($sellerFulfillmentOrderId)
   {
-    return $this->sendAsync("/fba/outbound/2020-07-01/fulfillmentOrders/{$sellerFulfillmentOrderId}", [
+    return $this->sendAsync("/fba/outbound/{$this->apiVersion}/fulfillmentOrders/{$sellerFulfillmentOrderId}", [
       'method' => 'GET',
     ]);
   }
@@ -177,7 +183,7 @@ class FulfillmentOutbound extends Client {
   */
   public function updateFulfillmentOrder($sellerFulfillmentOrderId, $body = [])
   {
-    return $this->send("/fba/outbound/2020-07-01/fulfillmentOrders/{$sellerFulfillmentOrderId}", [
+    return $this->send("/fba/outbound/{$this->apiVersion}/fulfillmentOrders/{$sellerFulfillmentOrderId}", [
       'method' => 'PUT',
       'json' => $body
     ]);
@@ -185,7 +191,7 @@ class FulfillmentOutbound extends Client {
 
   public function updateFulfillmentOrderAsync($sellerFulfillmentOrderId, $body = [])
   {
-    return $this->sendAsync("/fba/outbound/2020-07-01/fulfillmentOrders/{$sellerFulfillmentOrderId}", [
+    return $this->sendAsync("/fba/outbound/{$this->apiVersion}/fulfillmentOrders/{$sellerFulfillmentOrderId}", [
       'method' => 'PUT',
       'json' => $body
     ]);
@@ -199,14 +205,14 @@ class FulfillmentOutbound extends Client {
   */
   public function cancelFulfillmentOrder($sellerFulfillmentOrderId)
   {
-    return $this->send("/fba/outbound/2020-07-01/fulfillmentOrders/{$sellerFulfillmentOrderId}/cancel", [
+    return $this->send("/fba/outbound/{$this->apiVersion}/fulfillmentOrders/{$sellerFulfillmentOrderId}/cancel", [
       'method' => 'PUT',
     ]);
   }
 
   public function cancelFulfillmentOrderAsync($sellerFulfillmentOrderId)
   {
-    return $this->sendAsync("/fba/outbound/2020-07-01/fulfillmentOrders/{$sellerFulfillmentOrderId}/cancel", [
+    return $this->sendAsync("/fba/outbound/{$this->apiVersion}/fulfillmentOrders/{$sellerFulfillmentOrderId}/cancel", [
       'method' => 'PUT',
     ]);
   }
@@ -220,7 +226,7 @@ class FulfillmentOutbound extends Client {
   */
   public function getFeatures($queryParams = [])
   {
-    return $this->send("/fba/outbound/2020-07-01/features", [
+    return $this->send("/fba/outbound/{$this->apiVersion}/features", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -228,7 +234,7 @@ class FulfillmentOutbound extends Client {
 
   public function getFeaturesAsync($queryParams = [])
   {
-    return $this->sendAsync("/fba/outbound/2020-07-01/features", [
+    return $this->sendAsync("/fba/outbound/{$this->apiVersion}/features", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -246,7 +252,7 @@ class FulfillmentOutbound extends Client {
   */
   public function getFeatureInventory($featureName, $queryParams = [])
   {
-    return $this->send("/fba/outbound/2020-07-01/features/inventory/{$featureName}", [
+    return $this->send("/fba/outbound/{$this->apiVersion}/features/inventory/{$featureName}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -254,7 +260,7 @@ class FulfillmentOutbound extends Client {
 
   public function getFeatureInventoryAsync($featureName, $queryParams = [])
   {
-    return $this->sendAsync("/fba/outbound/2020-07-01/features/inventory/{$featureName}", [
+    return $this->sendAsync("/fba/outbound/{$this->apiVersion}/features/inventory/{$featureName}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -272,7 +278,7 @@ class FulfillmentOutbound extends Client {
   */
   public function getFeatureSKU($featureName, $sellerSku, $queryParams = [])
   {
-    return $this->send("/fba/outbound/2020-07-01/features/inventory/{$featureName}/{$sellerSku}", [
+    return $this->send("/fba/outbound/{$this->apiVersion}/features/inventory/{$featureName}/{$sellerSku}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -280,7 +286,7 @@ class FulfillmentOutbound extends Client {
 
   public function getFeatureSKUAsync($featureName, $sellerSku, $queryParams = [])
   {
-    return $this->sendAsync("/fba/outbound/2020-07-01/features/inventory/{$featureName}/{$sellerSku}", [
+    return $this->sendAsync("/fba/outbound/{$this->apiVersion}/features/inventory/{$featureName}/{$sellerSku}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);

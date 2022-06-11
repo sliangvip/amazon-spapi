@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class VendorDirectFulfillmentOrders extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation getOrders
   *
@@ -30,7 +36,7 @@ class VendorDirectFulfillmentOrders extends Client {
   */
   public function getOrders($queryParams = [])
   {
-    return $this->send("/vendor/directFulfillment/orders/v1/purchaseOrders", [
+    return $this->send("/vendor/directFulfillment/orders/{$this->apiVersion}/purchaseOrders", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -38,7 +44,7 @@ class VendorDirectFulfillmentOrders extends Client {
 
   public function getOrdersAsync($queryParams = [])
   {
-    return $this->sendAsync("/vendor/directFulfillment/orders/v1/purchaseOrders", [
+    return $this->sendAsync("/vendor/directFulfillment/orders/{$this->apiVersion}/purchaseOrders", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -52,14 +58,14 @@ class VendorDirectFulfillmentOrders extends Client {
   */
   public function getOrder($purchaseOrderNumber)
   {
-    return $this->send("/vendor/directFulfillment/orders/v1/purchaseOrders/{$purchaseOrderNumber}", [
+    return $this->send("/vendor/directFulfillment/orders/{$this->apiVersion}/purchaseOrders/{$purchaseOrderNumber}", [
       'method' => 'GET',
     ]);
   }
 
   public function getOrderAsync($purchaseOrderNumber)
   {
-    return $this->sendAsync("/vendor/directFulfillment/orders/v1/purchaseOrders/{$purchaseOrderNumber}", [
+    return $this->sendAsync("/vendor/directFulfillment/orders/{$this->apiVersion}/purchaseOrders/{$purchaseOrderNumber}", [
       'method' => 'GET',
     ]);
   }
@@ -70,7 +76,7 @@ class VendorDirectFulfillmentOrders extends Client {
   */
   public function submitAcknowledgement($body = [])
   {
-    return $this->send("/vendor/directFulfillment/orders/v1/acknowledgements", [
+    return $this->send("/vendor/directFulfillment/orders/{$this->apiVersion}/acknowledgements", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -78,7 +84,7 @@ class VendorDirectFulfillmentOrders extends Client {
 
   public function submitAcknowledgementAsync($body = [])
   {
-    return $this->sendAsync("/vendor/directFulfillment/orders/v1/acknowledgements", [
+    return $this->sendAsync("/vendor/directFulfillment/orders/{$this->apiVersion}/acknowledgements", [
       'method' => 'POST',
       'json' => $body
     ]);

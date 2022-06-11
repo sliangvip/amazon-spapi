@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class Services extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation getServiceJobByServiceJobId
   *
@@ -22,14 +28,14 @@ class Services extends Client {
   */
   public function getServiceJobByServiceJobId($serviceJobId)
   {
-    return $this->send("/service/v1/serviceJobs/{$serviceJobId}", [
+    return $this->send("/service/{$this->apiVersion}/serviceJobs/{$serviceJobId}", [
       'method' => 'GET',
     ]);
   }
 
   public function getServiceJobByServiceJobIdAsync($serviceJobId)
   {
-    return $this->sendAsync("/service/v1/serviceJobs/{$serviceJobId}", [
+    return $this->sendAsync("/service/{$this->apiVersion}/serviceJobs/{$serviceJobId}", [
       'method' => 'GET',
     ]);
   }
@@ -45,7 +51,7 @@ class Services extends Client {
   */
   public function cancelServiceJobByServiceJobId($serviceJobId, $queryParams = [])
   {
-    return $this->send("/service/v1/serviceJobs/{$serviceJobId}/cancellations", [
+    return $this->send("/service/{$this->apiVersion}/serviceJobs/{$serviceJobId}/cancellations", [
       'method' => 'PUT',
       'query' => $queryParams,
     ]);
@@ -53,7 +59,7 @@ class Services extends Client {
 
   public function cancelServiceJobByServiceJobIdAsync($serviceJobId, $queryParams = [])
   {
-    return $this->sendAsync("/service/v1/serviceJobs/{$serviceJobId}/cancellations", [
+    return $this->sendAsync("/service/{$this->apiVersion}/serviceJobs/{$serviceJobId}/cancellations", [
       'method' => 'PUT',
       'query' => $queryParams,
     ]);
@@ -67,14 +73,14 @@ class Services extends Client {
   */
   public function completeServiceJobByServiceJobId($serviceJobId)
   {
-    return $this->send("/service/v1/serviceJobs/{$serviceJobId}/completions", [
+    return $this->send("/service/{$this->apiVersion}/serviceJobs/{$serviceJobId}/completions", [
       'method' => 'PUT',
     ]);
   }
 
   public function completeServiceJobByServiceJobIdAsync($serviceJobId)
   {
-    return $this->sendAsync("/service/v1/serviceJobs/{$serviceJobId}/completions", [
+    return $this->sendAsync("/service/{$this->apiVersion}/serviceJobs/{$serviceJobId}/completions", [
       'method' => 'PUT',
     ]);
   }
@@ -100,7 +106,7 @@ class Services extends Client {
   */
   public function getServiceJobs($queryParams = [])
   {
-    return $this->send("/service/v1/serviceJobs", [
+    return $this->send("/service/{$this->apiVersion}/serviceJobs", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -108,7 +114,7 @@ class Services extends Client {
 
   public function getServiceJobsAsync($queryParams = [])
   {
-    return $this->sendAsync("/service/v1/serviceJobs", [
+    return $this->sendAsync("/service/{$this->apiVersion}/serviceJobs", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -122,7 +128,7 @@ class Services extends Client {
   */
   public function addAppointmentForServiceJobByServiceJobId($serviceJobId, $body = [])
   {
-    return $this->send("/service/v1/serviceJobs/{$serviceJobId}/appointments", [
+    return $this->send("/service/{$this->apiVersion}/serviceJobs/{$serviceJobId}/appointments", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -130,7 +136,7 @@ class Services extends Client {
 
   public function addAppointmentForServiceJobByServiceJobIdAsync($serviceJobId, $body = [])
   {
-    return $this->sendAsync("/service/v1/serviceJobs/{$serviceJobId}/appointments", [
+    return $this->sendAsync("/service/{$this->apiVersion}/serviceJobs/{$serviceJobId}/appointments", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -145,7 +151,7 @@ class Services extends Client {
   */
   public function rescheduleAppointmentForServiceJobByServiceJobId($serviceJobId, $appointmentId, $body = [])
   {
-    return $this->send("/service/v1/serviceJobs/{$serviceJobId}/appointments/{$appointmentId}", [
+    return $this->send("/service/{$this->apiVersion}/serviceJobs/{$serviceJobId}/appointments/{$appointmentId}", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -153,7 +159,7 @@ class Services extends Client {
 
   public function rescheduleAppointmentForServiceJobByServiceJobIdAsync($serviceJobId, $appointmentId, $body = [])
   {
-    return $this->sendAsync("/service/v1/serviceJobs/{$serviceJobId}/appointments/{$appointmentId}", [
+    return $this->sendAsync("/service/{$this->apiVersion}/serviceJobs/{$serviceJobId}/appointments/{$appointmentId}", [
       'method' => 'POST',
       'json' => $body
     ]);

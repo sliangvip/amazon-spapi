@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class FbaInventory extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation getInventorySummaries
   *
@@ -29,7 +35,7 @@ class FbaInventory extends Client {
   */
   public function getInventorySummaries($queryParams = [])
   {
-    return $this->send("/fba/inventory/v1/summaries", [
+    return $this->send("/fba/inventory/{$this->apiVersion}/summaries", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -37,7 +43,7 @@ class FbaInventory extends Client {
 
   public function getInventorySummariesAsync($queryParams = [])
   {
-    return $this->sendAsync("/fba/inventory/v1/summaries", [
+    return $this->sendAsync("/fba/inventory/{$this->apiVersion}/summaries", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);

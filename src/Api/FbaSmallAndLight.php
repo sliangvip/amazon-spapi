@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class FbaSmallAndLight extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation getSmallAndLightEnrollmentBySellerSKU
   *
@@ -25,7 +31,7 @@ class FbaSmallAndLight extends Client {
   */
   public function getSmallAndLightEnrollmentBySellerSKU($sellerSKU, $queryParams = [])
   {
-    return $this->send("/fba/smallAndLight/v1/enrollments/{$sellerSKU}", [
+    return $this->send("/fba/smallAndLight/{$this->apiVersion}/enrollments/{$sellerSKU}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -33,7 +39,7 @@ class FbaSmallAndLight extends Client {
 
   public function getSmallAndLightEnrollmentBySellerSKUAsync($sellerSKU, $queryParams = [])
   {
-    return $this->sendAsync("/fba/smallAndLight/v1/enrollments/{$sellerSKU}", [
+    return $this->sendAsync("/fba/smallAndLight/{$this->apiVersion}/enrollments/{$sellerSKU}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -50,7 +56,7 @@ class FbaSmallAndLight extends Client {
   */
   public function putSmallAndLightEnrollmentBySellerSKU($sellerSKU, $queryParams = [])
   {
-    return $this->send("/fba/smallAndLight/v1/enrollments/{$sellerSKU}", [
+    return $this->send("/fba/smallAndLight/{$this->apiVersion}/enrollments/{$sellerSKU}", [
       'method' => 'PUT',
       'query' => $queryParams,
     ]);
@@ -58,7 +64,7 @@ class FbaSmallAndLight extends Client {
 
   public function putSmallAndLightEnrollmentBySellerSKUAsync($sellerSKU, $queryParams = [])
   {
-    return $this->sendAsync("/fba/smallAndLight/v1/enrollments/{$sellerSKU}", [
+    return $this->sendAsync("/fba/smallAndLight/{$this->apiVersion}/enrollments/{$sellerSKU}", [
       'method' => 'PUT',
       'query' => $queryParams,
     ]);
@@ -75,7 +81,7 @@ class FbaSmallAndLight extends Client {
   */
   public function deleteSmallAndLightEnrollmentBySellerSKU($sellerSKU, $queryParams = [])
   {
-    return $this->send("/fba/smallAndLight/v1/enrollments/{$sellerSKU}", [
+    return $this->send("/fba/smallAndLight/{$this->apiVersion}/enrollments/{$sellerSKU}", [
       'method' => 'DELETE',
       'query' => $queryParams,
     ]);
@@ -83,7 +89,7 @@ class FbaSmallAndLight extends Client {
 
   public function deleteSmallAndLightEnrollmentBySellerSKUAsync($sellerSKU, $queryParams = [])
   {
-    return $this->sendAsync("/fba/smallAndLight/v1/enrollments/{$sellerSKU}", [
+    return $this->sendAsync("/fba/smallAndLight/{$this->apiVersion}/enrollments/{$sellerSKU}", [
       'method' => 'DELETE',
       'query' => $queryParams,
     ]);
@@ -100,7 +106,7 @@ class FbaSmallAndLight extends Client {
   */
   public function getSmallAndLightEligibilityBySellerSKU($sellerSKU, $queryParams = [])
   {
-    return $this->send("/fba/smallAndLight/v1/eligibilities/{$sellerSKU}", [
+    return $this->send("/fba/smallAndLight/{$this->apiVersion}/eligibilities/{$sellerSKU}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -108,7 +114,7 @@ class FbaSmallAndLight extends Client {
 
   public function getSmallAndLightEligibilityBySellerSKUAsync($sellerSKU, $queryParams = [])
   {
-    return $this->sendAsync("/fba/smallAndLight/v1/eligibilities/{$sellerSKU}", [
+    return $this->sendAsync("/fba/smallAndLight/{$this->apiVersion}/eligibilities/{$sellerSKU}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -120,7 +126,7 @@ class FbaSmallAndLight extends Client {
   */
   public function getSmallAndLightFeePreview($body = [])
   {
-    return $this->send("/fba/smallAndLight/v1/feePreviews", [
+    return $this->send("/fba/smallAndLight/{$this->apiVersion}/feePreviews", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -128,7 +134,7 @@ class FbaSmallAndLight extends Client {
 
   public function getSmallAndLightFeePreviewAsync($body = [])
   {
-    return $this->sendAsync("/fba/smallAndLight/v1/feePreviews", [
+    return $this->sendAsync("/fba/smallAndLight/{$this->apiVersion}/feePreviews", [
       'method' => 'POST',
       'json' => $body
     ]);

@@ -14,6 +14,13 @@ use DoubleBreak\Spapi\Client;
 
 class Reports extends Client {
 
+  protected $apiVersion = '2021-06-30';
+
+  protected $versions = [
+    '2021-06-30' => '2021-06-30',
+    '2020-09-04' => '2020-09-04',
+  ];
+
   /**
   * Operation getReports
   *
@@ -29,7 +36,7 @@ class Reports extends Client {
   */
   public function getReports($queryParams = [])
   {
-    return $this->send("/reports/2021-06-30/reports", [
+    return $this->send("/reports/{$this->apiVersion}/reports", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -37,7 +44,7 @@ class Reports extends Client {
 
   public function getReportsAsync($queryParams = [])
   {
-    return $this->sendAsync("/reports/2021-06-30/reports", [
+    return $this->sendAsync("/reports/{$this->apiVersion}/reports", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -49,7 +56,7 @@ class Reports extends Client {
   */
   public function createReport($body = [])
   {
-    return $this->send("/reports/2021-06-30/reports", [
+    return $this->send("/reports/{$this->apiVersion}/reports", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -57,7 +64,7 @@ class Reports extends Client {
 
   public function createReportAsync($body = [])
   {
-    return $this->sendAsync("/reports/2021-06-30/reports", [
+    return $this->sendAsync("/reports/{$this->apiVersion}/reports", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -71,14 +78,14 @@ class Reports extends Client {
   */
   public function cancelReport($reportId)
   {
-    return $this->send("/reports/2021-06-30/reports/{$reportId}", [
+    return $this->send("/reports/{$this->apiVersion}/reports/{$reportId}", [
       'method' => 'DELETE',
     ]);
   }
 
   public function cancelReportAsync($reportId)
   {
-    return $this->sendAsync("/reports/2021-06-30/reports/{$reportId}", [
+    return $this->sendAsync("/reports/{$this->apiVersion}/reports/{$reportId}", [
       'method' => 'DELETE',
     ]);
   }
@@ -91,14 +98,14 @@ class Reports extends Client {
   */
   public function getReport($reportId)
   {
-    return $this->send("/reports/2021-06-30/reports/{$reportId}", [
+    return $this->send("/reports/{$this->apiVersion}/reports/{$reportId}", [
       'method' => 'GET',
     ]);
   }
 
   public function getReportAsync($reportId)
   {
-    return $this->sendAsync("/reports/2021-06-30/reports/{$reportId}", [
+    return $this->sendAsync("/reports/{$this->apiVersion}/reports/{$reportId}", [
       'method' => 'GET',
     ]);
   }
@@ -112,7 +119,7 @@ class Reports extends Client {
   */
   public function getReportSchedules($queryParams = [])
   {
-    return $this->send("/reports/2021-06-30/schedules", [
+    return $this->send("/reports/{$this->apiVersion}/schedules", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -120,7 +127,7 @@ class Reports extends Client {
 
   public function getReportSchedulesAsync($queryParams = [])
   {
-    return $this->sendAsync("/reports/2021-06-30/schedules", [
+    return $this->sendAsync("/reports/{$this->apiVersion}/schedules", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -132,7 +139,7 @@ class Reports extends Client {
   */
   public function createReportSchedule($body = [])
   {
-    return $this->send("/reports/2021-06-30/schedules", [
+    return $this->send("/reports/{$this->apiVersion}/schedules", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -140,7 +147,7 @@ class Reports extends Client {
 
   public function createReportScheduleAsync($body = [])
   {
-    return $this->sendAsync("/reports/2021-06-30/schedules", [
+    return $this->sendAsync("/reports/{$this->apiVersion}/schedules", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -154,14 +161,14 @@ class Reports extends Client {
   */
   public function cancelReportSchedule($reportScheduleId)
   {
-    return $this->send("/reports/2021-06-30/schedules/{$reportScheduleId}", [
+    return $this->send("/reports/{$this->apiVersion}/schedules/{$reportScheduleId}", [
       'method' => 'DELETE',
     ]);
   }
 
   public function cancelReportScheduleAsync($reportScheduleId)
   {
-    return $this->sendAsync("/reports/2021-06-30/schedules/{$reportScheduleId}", [
+    return $this->sendAsync("/reports/{$this->apiVersion}/schedules/{$reportScheduleId}", [
       'method' => 'DELETE',
     ]);
   }
@@ -174,14 +181,14 @@ class Reports extends Client {
   */
   public function getReportSchedule($reportScheduleId)
   {
-    return $this->send("/reports/2021-06-30/schedules/{$reportScheduleId}", [
+    return $this->send("/reports/{$this->apiVersion}/schedules/{$reportScheduleId}", [
       'method' => 'GET',
     ]);
   }
 
   public function getReportScheduleAsync($reportScheduleId)
   {
-    return $this->sendAsync("/reports/2021-06-30/schedules/{$reportScheduleId}", [
+    return $this->sendAsync("/reports/{$this->apiVersion}/schedules/{$reportScheduleId}", [
       'method' => 'GET',
     ]);
   }
@@ -194,14 +201,14 @@ class Reports extends Client {
   */
   public function getReportDocument($reportDocumentId)
   {
-    return $this->send("/reports/2021-06-30/documents/{$reportDocumentId}", [
+    return $this->send("/reports/{$this->apiVersion}/documents/{$reportDocumentId}", [
       'method' => 'GET',
     ]);
   }
 
   public function getReportDocumentAsync($reportDocumentId)
   {
-    return $this->sendAsync("/reports/2021-06-30/documents/{$reportDocumentId}", [
+    return $this->sendAsync("/reports/{$this->apiVersion}/documents/{$reportDocumentId}", [
       'method' => 'GET',
     ]);
   }

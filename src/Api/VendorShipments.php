@@ -14,13 +14,19 @@ use DoubleBreak\Spapi\Client;
 
 class VendorShipments extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation SubmitShipmentConfirmations
   *
   */
   public function SubmitShipmentConfirmations($body = [])
   {
-    return $this->send("/vendor/shipping/v1/shipmentConfirmations", [
+    return $this->send("/vendor/shipping/{$this->apiVersion}/shipmentConfirmations", [
       'method' => 'POST',
       'json' => $body
     ]);
@@ -28,7 +34,7 @@ class VendorShipments extends Client {
 
   public function SubmitShipmentConfirmationsAsync($body = [])
   {
-    return $this->sendAsync("/vendor/shipping/v1/shipmentConfirmations", [
+    return $this->sendAsync("/vendor/shipping/{$this->apiVersion}/shipmentConfirmations", [
       'method' => 'POST',
       'json' => $body
     ]);

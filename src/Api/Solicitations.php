@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class Solicitations extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation getSolicitationActionsForOrder
   *
@@ -25,7 +31,7 @@ class Solicitations extends Client {
   */
   public function getSolicitationActionsForOrder($amazonOrderId, $queryParams = [])
   {
-    return $this->send("/solicitations/v1/orders/{$amazonOrderId}", [
+    return $this->send("/solicitations/{$this->apiVersion}/orders/{$amazonOrderId}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -33,7 +39,7 @@ class Solicitations extends Client {
 
   public function getSolicitationActionsForOrderAsync($amazonOrderId, $queryParams = [])
   {
-    return $this->sendAsync("/solicitations/v1/orders/{$amazonOrderId}", [
+    return $this->sendAsync("/solicitations/{$this->apiVersion}/orders/{$amazonOrderId}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -50,7 +56,7 @@ class Solicitations extends Client {
   */
   public function createProductReviewAndSellerFeedbackSolicitation($amazonOrderId, $queryParams = [])
   {
-    return $this->send("/solicitations/v1/orders/{$amazonOrderId}/solicitations/productReviewAndSellerFeedback", [
+    return $this->send("/solicitations/{$this->apiVersion}/orders/{$amazonOrderId}/solicitations/productReviewAndSellerFeedback", [
       'method' => 'POST',
       'query' => $queryParams,
     ]);
@@ -58,7 +64,7 @@ class Solicitations extends Client {
 
   public function createProductReviewAndSellerFeedbackSolicitationAsync($amazonOrderId, $queryParams = [])
   {
-    return $this->sendAsync("/solicitations/v1/orders/{$amazonOrderId}/solicitations/productReviewAndSellerFeedback", [
+    return $this->sendAsync("/solicitations/{$this->apiVersion}/orders/{$amazonOrderId}/solicitations/productReviewAndSellerFeedback", [
       'method' => 'POST',
       'query' => $queryParams,
     ]);

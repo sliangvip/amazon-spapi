@@ -14,6 +14,12 @@ use DoubleBreak\Spapi\Client;
 
 class Sales extends Client {
 
+  protected $apiVersion = 'v1';
+
+  protected $versions = [
+    'v1' => 'v1',
+  ];
+
   /**
   * Operation getOrderMetrics
   *
@@ -31,7 +37,7 @@ class Sales extends Client {
   */
   public function getOrderMetrics($queryParams = [])
   {
-    return $this->send("/sales/v1/orderMetrics", [
+    return $this->send("/sales/{$this->apiVersion}/orderMetrics", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -39,7 +45,7 @@ class Sales extends Client {
 
   public function getOrderMetricsAsync($queryParams = [])
   {
-    return $this->sendAsync("/sales/v1/orderMetrics", [
+    return $this->sendAsync("/sales/{$this->apiVersion}/orderMetrics", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);

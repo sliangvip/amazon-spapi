@@ -16,6 +16,12 @@ use DoubleBreak\Spapi\Client;
 
 class CatalogItems extends Client {
 
+  protected $apiVersion = '2020-12-01';
+
+  protected $versions = [
+    '2020-12-01' => '2020-12-01',
+  ];
+
   /**
   * Operation searchCatalogItems
   *
@@ -33,7 +39,7 @@ class CatalogItems extends Client {
   */
   public function searchCatalogItems($queryParams = [])
   {
-    return $this->send("/catalog/2020-12-01/items", [
+    return $this->send("/catalog/{$this->apiVersion}/items", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -41,7 +47,7 @@ class CatalogItems extends Client {
 
   public function searchCatalogItemsAsync($queryParams = [])
   {
-    return $this->sendAsync("/catalog/2020-12-01/items", [
+    return $this->sendAsync("/catalog/{$this->apiVersion}/items", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -60,7 +66,7 @@ class CatalogItems extends Client {
   */
   public function getCatalogItem($asin, $queryParams = [])
   {
-    return $this->send("/catalog/2020-12-01/items/{$asin}", [
+    return $this->send("/catalog/{$this->apiVersion}/items/{$asin}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -68,7 +74,7 @@ class CatalogItems extends Client {
 
   public function getCatalogItemAsync($asin, $queryParams = [])
   {
-    return $this->sendAsync("/catalog/2020-12-01/items/{$asin}", [
+    return $this->sendAsync("/catalog/{$this->apiVersion}/items/{$asin}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);

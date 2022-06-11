@@ -16,6 +16,12 @@ use DoubleBreak\Spapi\Client;
 
 class ProductTypeDefinitions extends Client {
 
+  protected $apiVersion = '2020-09-01';
+
+  protected $versions = [
+    '2020-09-01' => '2020-09-01',
+  ];
+
   /**
   * Operation searchDefinitionsProductTypes
   *
@@ -26,7 +32,7 @@ class ProductTypeDefinitions extends Client {
   */
   public function searchDefinitionsProductTypes($queryParams = [])
   {
-    return $this->send("/definitions/2020-09-01/productTypes", [
+    return $this->send("/definitions/{$this->apiVersion}/productTypes", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -34,7 +40,7 @@ class ProductTypeDefinitions extends Client {
 
   public function searchDefinitionsProductTypesAsync($queryParams = [])
   {
-    return $this->sendAsync("/definitions/2020-09-01/productTypes", [
+    return $this->sendAsync("/definitions/{$this->apiVersion}/productTypes", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -57,7 +63,7 @@ class ProductTypeDefinitions extends Client {
   */
   public function getDefinitionsProductType($productType, $queryParams = [])
   {
-    return $this->send("/definitions/2020-09-01/productTypes/{$productType}", [
+    return $this->send("/definitions/{$this->apiVersion}/productTypes/{$productType}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
@@ -65,7 +71,7 @@ class ProductTypeDefinitions extends Client {
 
   public function getDefinitionsProductTypeAsync($productType, $queryParams = [])
   {
-    return $this->sendAsync("/definitions/2020-09-01/productTypes/{$productType}", [
+    return $this->sendAsync("/definitions/{$this->apiVersion}/productTypes/{$productType}", [
       'method' => 'GET',
       'query' => $queryParams,
     ]);
