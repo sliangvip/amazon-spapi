@@ -86,8 +86,7 @@ class Feeder
     {
         $key = null;
         $initializationVector = null;
-        $feedUploadUrl = $payload['url'];
-
+        $feedDownloadUrl = $payload['url'];
         // check if decryption in required
         if (isset($payload['encryptionDetails'])) {
             $key = $payload['encryptionDetails']['key'];
@@ -98,14 +97,12 @@ class Feeder
             $key = base64_decode($key, true);
         }
 
-        $feedDownloadUrl = $payload['url'];
-
         $response = (new \GuzzleHttp\Client())->get($feedDownloadUrl, [
             'verify' => false,
         ]);
-        $content_type = $response->getHeader('content-type');
-        list($content_type, $charset) = $this->parseContentType($content_type);
         $file_content = $response->getBody()->getContents();
+        $content_type = $response->getHeader('content-type');
+        extract($this->parseContentType($content_type));
         if (!is_null($key)) {
             $feed_processing_report_content = ASECryptoStream::decrypt($file_content, $key, $initializationVector);
         } else {
