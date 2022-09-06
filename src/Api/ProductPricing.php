@@ -128,4 +128,20 @@ class ProductPricing extends Client {
       'query' => $queryParams,
     ]);
   }
+
+  public function batchItemOffers($body)
+  {
+      return $this->send("/batches/products/pricing/v0/itemOffers", [
+          'method' => 'POST',
+          'json' => ['requests' => $body],
+      ]);
+  }
+
+  public function batchListingOffers($body)
+  {
+      return $this->send("/batches/products/pricing/v0/listingOffers", [
+          'method' => 'POST',
+          'json' => ['requests' => $body],
+      ]);
+  }
 }
